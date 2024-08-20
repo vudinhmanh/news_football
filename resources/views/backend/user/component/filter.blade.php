@@ -30,7 +30,7 @@
     </div>
 
     <!-- Nút Thêm mới thành viên -->
-    <a href="" class="btn btn-danger flex items-center px-4 py-2 rounded-lg text-white !mb-0">
+    <a href="{{ route('user.create') }}" class="btn btn-danger flex items-center px-4 py-2 rounded-lg text-white !mb-0">
       <i class="fa fa-plus mr-2"></i> Thêm mới thành viên
     </a>
   </div>
