@@ -21,7 +21,14 @@ class UserService implements UserServiceInterface
     $this->userRepository = $userRepository;
   }
   public function paginate(){
-    $user = $this->userRepository->getAllPaginate();
+    $user = $this->userRepository->pagination([
+      'id', 
+      'name',
+      'email', 
+      'phone', 
+      'address',
+      'publish' 
+    ]);
     return $user;
   }
   public function create($request){
@@ -29,8 +36,7 @@ class UserService implements UserServiceInterface
     try{
       //except lấy tất cả ngoại trừ
       $payload = $request->except(['_token','send', 're_password']);
-      $carbonDate = Carbon::createFromFormat('Y-m-d', $payload['birthday']);
-      $payload['birthday'] = $carbonDate->format('Y-m-d H:i:s');
+      $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
       $payload['password'] = Hash::make($payload['password']);
       $user = $this->userRepository->create($payload);
       // dd($user);
@@ -42,5 +48,43 @@ class UserService implements UserServiceInterface
       die();
       return false;
     }
+  }
+
+  public function update($id, $request){
+    DB::beginTransaction();
+    try{
+      //except lấy tất cả ngoại trừ
+      $payload = $request->except(['_token','send']);
+      $payload['birthday'] = $this->convertBirthdayDate($payload['birthday']);
+      // dd($payload);
+      $user = $this->userRepository->update($id,$payload);
+      // dd($user);
+      DB::commit();
+      return true;
+    }catch(Exception $e){
+      DB::rollBack();
+      echo $e->getMessage();
+      die();
+      return false;
+    }
+  }
+  public function destroy($id){
+    DB::beginTransaction();
+    try{
+      $user = $this->userRepository->forceDelete($id);//hard delete
+      // $user = $this->userRepository->delete($id);//soft delete
+      DB::commit();
+      return true;
+    }catch(Exception $e){
+      DB::rollBack();
+      echo $e->getMessage();
+      die();
+      return false;
+    }
+  }
+  private function convertBirthdayDate($birthday = '') {
+    $carbonDate = Carbon::createFromFormat('Y-m-d', $birthday);
+    $birthday = $carbonDate->format('Y-m-d H:i:s');
+    return $birthday;
   }
 }

@@ -8,7 +8,10 @@
         </ul>
     </div>
 @endif
-<form action="{{ route('user.store') }}" method="post" class="box">
+@php
+    $url = ($config['method'] == 'create' ? route('user.store') : route('user.update', $user->id));
+@endphp
+<form action="{{ $url }}" method="post" class="box">
   @csrf
   <div class="wrapper wrapper-content animated fadeInRight">
       <div class="row">
@@ -87,7 +90,7 @@
                               </div>
                           </div>
                       </div>
-                      {{-- @if($config['method'] == 'create') --}}
+                      @if($config['method'] == 'create')
                       <div class="row mb15">
                           <div class="col-lg-6">
                               <div class="form-row">
@@ -116,7 +119,7 @@
                               </div>
                           </div>
                       </div>
-                      {{-- @endif --}}
+                      @endif
                       <div class="row mb-[15px]">
                           <div class="col-lg-12">
                               <div class="form-row">
@@ -234,7 +237,7 @@
   </div>
 </form>
 <script>
-    var province_id = '{{ old('province_id' )}}'
-    var district_id = '{{ old('district_id' )}}'
-    var ward_id = '{{ old('ward_id' )}}'
+    var province_id = '{{ (isset($user->province_id)) ? $user->province_id : old('province_id') }}'
+    var district_id = '{{ (isset($user->district_id)) ? $user->district_id : old('district_id') }}'
+    var ward_id = '{{ (isset($user->ward_id)) ? $user->ward_id : old('ward_id') }}'
 </script>

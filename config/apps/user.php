@@ -6,5 +6,11 @@ return [
   ],
   'create' => [
     'title' => 'Thêm mới thành viên'
+  ],
+  'store' => [
+    'title' => 'Sửa thành viên'
+  ],
+  'delete' => [
+    'title' => 'Xoá'
   ]
 ];

@@ -1,76 +1,51 @@
-<table class="table table-striped table-bordered table-user">
+<table class="table table-striped table-bordered">
   <thead>
   <tr>
       <th>
-        <input type="checkbox" name="" id="checkAllUser">
+          <input type="checkbox" value="" id="checkAll" class="input-checkbox">
       </th>
-      <th>Thông tin thành viên</th>
+      <th>Họ Tên</th>
+      <th>Email</th>
+      <th>Số điện thoại</th>
       <th>Địa chỉ</th>
-      <th>Tình trạng</th>
-      <th>Thao tác</th>
+      <th class="text-center">Nhóm thành viên</th>
+      <th class="text-center">Tình Trạng</th>
+      <th class="text-center">Thao tác</th>
   </tr>
   </thead>
   <tbody>
-    {{-- @if (isset($users) && is_object($users)) --}}
-      @for ($i = 0; $i < 20; $i++)
-        <tr>
-          <td>
-            <input type="checkbox" name="" id="">
-          </td>
-          <td>
-            <div class="user-item name">
-              <strong>
-                Họ tên:
-              </strong>
-              {{-- {{$user->name}} --}}
-            </div>
-            <div class="user-item email">
-              <strong>
-                Email:
-              </strong>
-              manhmanhmanh28@gmail.com
-            </div>
-            <div class="user-item phone">
-              <strong>
-                SDT:    
-              </strong>
-                0395792304
-            </div>
-          </td>
-          <td>
-            <div class="">
-              <strong>
-                Địa chỉ:
-              </strong>
-              An Xá, Quốc Tuấn, Nam Sách, Hải Dương
-            </div>
-            <div class="">
-              <strong>
-                Quận:
-              </strong>
-              Bắc Từ Liêm
-            </div>
-            <div class="">
-              <strong>
-                Thành phố:
-              </strong>
-              Hà Nội
-            </div>
-          </td>
-          <td>
-            <input type="checkbox" class="js-switch" checked="">
-          </td>
-          <td>
-            <a href="">
-              <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-            </a>
-            <a href="">
-              <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-            </a>
-          </td>
-      </tr>
-      @endfor
-    {{-- @endif --}}
+      @if(isset($users) && is_object($users))
+          @foreach($users as $user)
+          <tr >
+              <td>
+                  <input type="checkbox" value="{{ $user->id }}" class="input-checkbox checkBoxItem">
+              </td>
+              <td>
+                  {{ $user->name }}
+              </td>
+              <td>
+                  {{ $user->email }}
+              </td>
+              <td>
+                  {{ $user->phone }}
+              </td>
+              <td>
+                  {{ $user->address }}
+              </td>
+              <td class="text-center">
+                  {{-- {{ $user->user_catalogues->name }} --}}
+              </td>
+              <td class="text-center js-switch-{{ $user->id }}"> 
+                  <input type="checkbox" value="{{ $user->publish }}" class="js-switch status " data-field="publish"  
+                  {{ ($user->publish == 1) ? 'checked' : ''}}/>
+              </td>
+              <td class="text-center"> 
+                  <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                  <a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+              </td>
+          </tr>
+          @endforeach
+      @endif
   </tbody>
 </table>
-{{ $users->links('pagination::bootstrap-4') }}
+{{  $users->links('pagination::bootstrap-4') }}
