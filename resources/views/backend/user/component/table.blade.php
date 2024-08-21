@@ -16,7 +16,7 @@
   <tbody>
       @if(isset($users) && is_object($users))
           @foreach($users as $user)
-          <tr >
+          <tr>
               <td>
                   <input type="checkbox" value="{{ $user->id }}" class="input-checkbox checkBoxItem">
               </td>
@@ -36,8 +36,11 @@
                   {{-- {{ $user->user_catalogues->name }} --}}
               </td>
               <td class="text-center js-switch-{{ $user->id }}"> 
-                  <input type="checkbox" value="{{ $user->publish }}" class="js-switch status " data-field="publish"  
-                  {{ ($user->publish == 1) ? 'checked' : ''}}/>
+                  <input type="checkbox" value="{{ $user->publish }}" class="js-switch status" data-field="publish" 
+                  data-model="User"  
+                    {{ ($user->publish == 1) ? 'checked' : ''}}
+                    data-modelId="{{ $user->id }}"
+                  />
               </td>
               <td class="text-center"> 
                   <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>

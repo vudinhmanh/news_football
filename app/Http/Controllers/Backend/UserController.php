@@ -22,11 +22,12 @@ class UserController extends Controller
         $this->provideRepository = $provideRepository;
         $this->userRepository = $userRepository;
     }
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->userService->paginate();
+        $users = $this->userService->paginate($request);
         $config = [
             'js' => [
+                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
                 '/Admin/js/plugins/switchery/switchery.js'
             ],
             'css' => [

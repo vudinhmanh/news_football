@@ -5,6 +5,7 @@
 <script src="/Admin/js/jquery-3.1.1.min.js"></script>
 <link href="/Admin/css/bootstrap.min.css" rel="stylesheet">
 <link href="/Admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @vite('resources/css/app.css')
 <link href="/Admin/css/animate.css" rel="stylesheet">
 <link href="/Admin/css/style.css" rel="stylesheet">

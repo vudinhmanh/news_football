@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Backend\AuthenticateMiddleware;
 use App\Http\Middleware\Backend\LoginMiddleware;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\Ajax\DashboardController as AjaxDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,10 +48,14 @@ Route::group(['prefix' => 'user'], function(){
                                                             ->name('user.destroy')->middleware('admin');
 });
 //AJAX
-Route::get('ajax/location/getLocation', [LocationController::class, 'getLocation'])->name('ajax.location.getLocation');
+Route::get('ajax/location/getLocation', [LocationController::class, 'getLocation'])->name('ajax.location.getLocation')->middleware('admin');;
+Route::post('ajax/dashboard/changeStatus', [AjaxDashboardController::class, 'changeStatus'])->name('ajax.dashboard.changeStatus')->middleware('admin');;
+Route::post('ajax/dashboard/changeStatusAll', [AjaxDashboardController::class, 'changeStatusAll'])->name('ajax.dashboard.changeStatusAll')->middleware('admin');;
 
 // LOGIN LOGOUT ADMIN ROUTES
 Route::group(['prefix' => 'user'], function(){
     Route::get('login', [AuthController::class, 'index'])->name('auth.login')->middleware(LoginMiddleware::class);    
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
+
+

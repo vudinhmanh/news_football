@@ -15,5 +15,6 @@ interface UserRepositoryInterface
   public function delete(int $id = 0);
   //Hard delete
   public function forceDelete(int $id = 0);
-  public function pagination(array $column = ['*'], array $condition = [], array $join = [], int $perpage = 10);
+  public function pagination(array $column = ['*'], array $condition = [], array $join = [], array $extend = [],int $perpage = 10);
+  public function updateByWhereIn(string $whereInField = '', array $whereIn = [], array $payload = []);
 }

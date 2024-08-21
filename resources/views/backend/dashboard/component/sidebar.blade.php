@@ -33,12 +33,11 @@
                 <a href="{{route('admin.dashboard')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý thành viên</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ route('user.index') }}">Quản lý nhóm thành viên</a>
+                        <a href="#">Quản lý nhóm thành viên</a>
                     </li>
                     <li>
-                        <a href="#">Quản lý thành viên</a>
+                        <a href="{{ route('user.index') }}">Quản lý thành viên</a>
                     </li>
-
                 </ul>
             </li>
         </ul>
