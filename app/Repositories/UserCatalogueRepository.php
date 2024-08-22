@@ -1,21 +1,21 @@
 <?php
 
 namespace App\Repositories;
-use App\Models\User;
-use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Models\UserCatalogue;
+use App\Repositories\Interfaces\UserCatalogueRepositoryInterface;
 use App\Repositories\BaseRepository;
 /**
  * Class UserService
  * @package App\Services
  */
-class UserRepository extends BaseRepository implements UserRepositoryInterface
+class UserCatalogueRepository extends BaseRepository implements UserCatalogueRepositoryInterface
 {
   protected $model;
-  public function __construct(User $model){
+  public function __construct(UserCatalogue $model){
     $this->model = $model;
   }
   public function getAllPaginate(){
-    return User::paginate(15);
+    return UserCatalogue::paginate(15);
   }
   public function pagination
   (
@@ -24,17 +24,21 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     array $join = [], 
     array $extend = [],
     int $perpage = 10,
-    array $relation = []
+    array $relations = []
     )
     {
     $query = $this->model->select($column)->where(function($query) use ($condition){
       if(isset($condition['keyword']) && !empty($condition['keyword'])){
         $query->where('name', 'LIKE', '%'.$condition['keyword'].'%')
-              ->orWhere('email', 'LIKE', '%'.$condition['keyword'].'%')
-              ->orWhere('address', 'LIKE', '%'.$condition['keyword'].'%')
-              ->orWhere('phone', 'LIKE', '%'.$condition['keyword'].'%');
+              ->orWhere('description', 'LIKE', '%'.$condition['keyword'].'%');
       }
-    })->with('user_catalogues');
+    });
+    if(isset($relations) && !empty($relations))
+    {
+      foreach($relations as $relation){
+        $query->withCount($relation);
+      }
+    }
     if(!empty($join)){
       $query->join(...$join);
     }

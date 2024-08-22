@@ -1,16 +1,16 @@
 <?php
 return [
   'index' => [
-    'title' => 'Quản lý nhóm thành viên',
+    'title' => 'Quản lý thành viên',
     'table' => 'Danh sách thành viên'
   ],
   'create' => [
     'title' => 'Thêm mới thành viên'
   ],
-  'store' => [
+  'edit' => [
     'title' => 'Sửa thành viên'
   ],
   'delete' => [
-    'title' => 'Xoá'
+    'title' => 'Xoá thành viên'
   ]
 ];

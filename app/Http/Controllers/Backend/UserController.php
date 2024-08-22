@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Backend;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -35,7 +33,7 @@ class UserController extends Controller
             ]
         ];
         $config['seo'] = config('apps.user');
-        $template = 'backend.user.index';
+        $template = 'backend.user.user.index';
         return view(
             'backend.dashboard.layout',
             compact(
@@ -59,7 +57,7 @@ class UserController extends Controller
         ];
         $config['seo'] = config('apps.user');
         $config['method'] = 'create';
-        $template = 'backend.user.store';
+        $template = 'backend.user.user.store';
         return view('backend.dashboard.layout',
             compact(
                 'template',
@@ -89,7 +87,7 @@ class UserController extends Controller
         ];
         $config['seo'] = config('apps.user');
         $config['method'] = 'edit';
-        $template = 'backend.user.store';
+        $template = 'backend.user.user.store';
         return view('backend.dashboard.layout',
             compact(
                 'template',
@@ -107,8 +105,9 @@ class UserController extends Controller
     }
     public function delete($id){
         $user = $this->userRepository->findById($id);
-        $template = 'backend.user.delete';
+        $template = 'backend.user.user.delete';
         $config['seo'] = config('apps.user');
+        $config['method'] = 'delete';
         return view('backend.dashboard.layout',
             compact(
                 'template',

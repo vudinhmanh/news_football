@@ -25,6 +25,7 @@ class StoreUserRequest extends FormRequest
             //
             'email' => 'required|string|email|unique:users',
             'name' => 'required|string',
+            'birthday' => 'required',
             'user_catalogue_id' => 'required|gt:0',
             'password' => 'required|string|min:6',
             're_password' =>'required|string|min:6|same:password',
@@ -38,7 +39,8 @@ class StoreUserRequest extends FormRequest
             'email.unique' => 'Email đã tồn tại',
             'name.required' => 'Bạn chưa nhập vào tên',
             'user_catalogue_id.required' => 'Bạn chưa chọn nhóm thành viên',
-            // 'user_catalogue_id.gt' => 'ID danh mục người dùng phải lớn hơn 0',
+            'user_catalogue_id.gt' => 'Hãy chọn 1 nhóm thành viên', // Thêm thông điệp cho điều kiện "greater than"
+            'birthday.required' => 'Bạn chưa nhập ngày sinh',
             'password.required' => 'Bạn chưa nhập mật khẩu',
             'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
             're_password.required' => 'Bạn chưa nhập lại mật khẩu',

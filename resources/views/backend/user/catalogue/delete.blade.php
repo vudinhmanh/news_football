@@ -1,5 +1,5 @@
-@include('backend.dashboard.component.breadcrump', ['title' => $config['seo']['create']['title']])
-<form action="{{ route('user.destroy', $user->id) }}" method="post" class="box">
+@include('backend.dashboard.component.breadcrump', ['title' => $config['seo']['delete']['title']])
+<form action="{{ route('user.catalogue.destroy', $userCatalogue->id) }}" method="post" delete="box">
   @csrf
   @method('DELETE')
   <div class="wrapper wrapper-content animated fadeInRight">
@@ -7,7 +7,7 @@
           <div class="col-lg-5">
               <div class="panel-head">
                   <div class="">
-                      <p class="text-2xl text-red-500">Bạn muốn xoá thành viên có email là: {{ $user->email }}</p>
+                      <p class="text-2xl text-red-500">Bạn muốn xoá thành viên có tên là: {{ $userCatalogue->name }}</p>
                       <p class="font-semibold">Lưu ý: Những thông tin sau khi xoá không thể khôi phục </p>
                   </div>
               </div>
@@ -16,27 +16,13 @@
               <div class="ibox">
                   <div class="ibox-content">
                       <div class="row mb15">
-                          <div class="col-lg-6">
+                          <div class="col-lg-12">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Email <span class="text-danger">(*)</span></label>
-                                  <input 
-                                      type="text"
-                                      name="email"
-                                      value="{{ old('email', ($user->email) ?? '' ) }}"
-                                      class="form-control"
-                                      placeholder=""
-                                      autocomplete="off"
-                                      readonly
-                                  >
-                              </div>
-                          </div>
-                          <div class="col-lg-6">
-                              <div class="form-row">
-                                  <label for="" class="control-label text-left">Họ Tên <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">Họ tên <span class="text-danger">(*)</span></label>
                                   <input 
                                       type="text"
                                       name="name"
-                                      value="{{ old('name', ($user->name) ?? '' ) }}"
+                                      value="{{ old('name', ($userCatalogue->name) ?? '' ) }}"
                                       class="form-control"
                                       placeholder=""
                                       autocomplete="off"

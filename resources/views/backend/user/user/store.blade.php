@@ -1,4 +1,8 @@
-@include('backend.dashboard.component.breadcrump', ['title' => $config['seo']['create']['title']])
+@if (strpos(url()->current(), 'edit') !== false)
+    @include('backend.dashboard.component.breadcrump', ['title' => $config['seo']['edit']['title']])
+@else
+    @include('backend.dashboard.component.breadcrump', ['title' => $config['seo']['create']['title']])
+@endif
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -12,7 +16,7 @@
     $url = ($config['method'] == 'create' ? route('user.store') : route('user.update', $user->id));
 @endphp
 <form action="{{ $url }}" method="post" class="box">
-  @csrf
+  @csrf 
   <div class="wrapper wrapper-content animated fadeInRight">
       <div class="row">
           <div class="col-lg-5">
@@ -78,7 +82,7 @@
                           </div>
                           <div class="col-lg-6">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Ngày sinh </label>
+                                  <label for="" class="control-label text-left">Ngày sinh <span class="text-danger">(*)</span></label>
                                   <input 
                                       type="date"
                                       name="birthday"

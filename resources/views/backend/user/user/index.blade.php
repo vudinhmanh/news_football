@@ -15,11 +15,11 @@
               <h5 class="uppercase">
                 {{ $config['seo']['index']['table'] }}
               </h5>
-              @include('backend.user.component.toolbox')
+              @include('backend.user.user.component.toolbox')
           </div>
           <div class="ibox-content">
-            @include('backend.user.component.filter')
-            @include('backend.user.component.table')
+            @include('backend.user.user.component.filter')
+            @include('backend.user.user.component.table')
           </div>
       </div>
   </div>
