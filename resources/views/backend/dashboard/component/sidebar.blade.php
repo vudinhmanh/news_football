@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <nav class="navbar-default navbar-static-side" role="navigation">
+@php
+    $segment = request()->segment(1);    
+@endphp
+<nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
                         <img alt="image" class="img-circle" src="" />
-                         </span>
+                            </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Vũ Đình Mạnh</strong>
-                         </span> <span class="text-muted text-xs block">Admin<b class="caret"></b></span> </span> </a>
+                            </span> <span class="text-muted text-xs block">Admin<b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a href="profile.html">Profile</a></li>
                         <li><a href="contacts.html">Contacts</a></li>
@@ -29,19 +23,24 @@
                     IN+
                 </div>
             </li>
-            <li class="active">
-                <a href="{{route('admin.dashboard')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lý thành viên</span> <span class="fa arrow"></span></a>
+            @foreach(config('apps.module.module') as $key => $val)
+            <li class="{{ (isset($val['name']) && (in_array($segment, $val['name'])) ? 'active' : '') }}">
+                <a href="#">
+                    <i class="{{ $val['icon'] }}"></i>
+                    <span class="nav-label">{{ $val['title'] }}</span> 
+                    <span class="fa arrow"></span>
+                </a>
+                @if(isset($val['subModule']))
                 <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ route('user.catalogue.index') }}">Quản lý nhóm thành viên</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('user.index') }}">Quản lý thành viên</a>
-                    </li>
+                    @foreach($val['subModule'] as $module)
+                        <li>
+                            <a href="/{{ $module['route'] }}">{{ $module['title'] }}</a>
+                        </li>
+                    @endforeach
                 </ul>
+                @endif
             </li>
+            @endforeach
         </ul>
     </div>
-  </nav>
-</body>
-</html>
+</nav>

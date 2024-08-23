@@ -46,15 +46,7 @@ class UserController extends Controller
     public function create()
     {
         $provinces = $this->provideRepository->all();
-        $config = [
-            'css' => [
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet'
-            ],
-            'js' => [
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
-                '/Admin/library/location.js',
-            ]
-        ];
+        $config = $this->configData();
         $config['seo'] = config('apps.user');
         $config['method'] = 'create';
         $template = 'backend.user.user.store';
@@ -76,15 +68,7 @@ class UserController extends Controller
         $user = $this->userRepository->findById($id);
         // dd($user);
         $provinces = $this->provideRepository->all();
-        $config = [
-            'css' => [
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet'
-            ],
-            'js' => [
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
-                '/Admin/library/location.js',
-            ]
-        ];
+        $config = $this->configData();
         $config['seo'] = config('apps.user');
         $config['method'] = 'edit';
         $template = 'backend.user.user.store';
@@ -121,5 +105,18 @@ class UserController extends Controller
             return redirect()->route('user.index')->with('success', "Xoá thành công");    
         }
         return redirect()->route('user.index')->with('error', "Xoá thất bại");    
+    }
+    private function configData(){
+        return [
+            'css' => [  
+                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet'
+            ],
+            'js' => [
+                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+                '/Admin/library/location.js',
+                '/Admin/plugins/ckfinder_2/ckfinder.js',
+                '/Admin/library/finder.js'
+            ]
+        ];
     }
 }

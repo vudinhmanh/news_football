@@ -136,6 +136,7 @@
                                       placeholder=""
                                       autocomplete="off"
                                       data-upload="Images"
+                                      readonly
                                   >
                               </div>
                           </div>

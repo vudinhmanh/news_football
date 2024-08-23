@@ -1,3 +1,5 @@
+<base href = "http://127.0.0.1:8000/">
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,5 +17,9 @@
 @if (isset($config['css']) && is_array($config['css']))
   @foreach($config['css'] as $key => $val)
     {!! '<link rel="stylesheet" href="'.$val.'"></script>' !!}    
-  @endforeach
+  @endforeach 
 @endif
+
+<script>
+  var BASE_URL = 'http://127.0.0.1:8000/';
+</script>

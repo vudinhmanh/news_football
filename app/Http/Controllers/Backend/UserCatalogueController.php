@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Services\Interfaces\UserCatalogueServiceInterface  as UserCatalogueService;
 use App\Repositories\Interfaces\UserCatalogueRepositoryInterface  as UserCatalogueRepository;
 use App\Http\Requests\StoreUserCatalogueRequest;
+
 class UserCatalogueController extends Controller
 {
     protected $userCatalogueService;

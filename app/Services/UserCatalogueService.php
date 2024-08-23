@@ -30,7 +30,7 @@ class UserCatalogueService implements UserCatalogueServiceInterface
     $perpage = $request->integer('perpage');
     $userCatalogue = $this->userCatalogueRepository->pagination(
       $this->paginateSelect(), $condition, [], ['path' => '/user/catalogue/index'], 
-              $perpage, ['users']
+              $perpage, []
     );
     return $userCatalogue;
   }
