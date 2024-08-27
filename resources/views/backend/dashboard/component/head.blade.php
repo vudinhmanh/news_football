@@ -1,4 +1,4 @@
-<base href = "http://127.0.0.1:8000/">
+<base href = "{{ config('app.url') }}">
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,5 +21,6 @@
 @endif
 
 <script>
-  var BASE_URL = 'http://127.0.0.1:8000/';
+  const BASE_URL = '{{ config('app.url') }}';
+  const SUFFIX = '{{ config('apps.general.suffix') }}';
 </script>

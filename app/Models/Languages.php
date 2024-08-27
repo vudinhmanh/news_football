@@ -4,20 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Traits\QueryScopes;
 
 class Languages extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'name',
         'canonical',
         'publish',
         'user_id',
-        'image'
+        'image',
+        'current',
     ];
+
     protected $table = 'languages';
+
+
+    public function languages(){
+        return $this->belongsToMany(PostCatalogue::class, 'post_catalogue_language' , 'language_id', 'post_catalogue_id')
+        ->withPivot(
+            'name',
+            'canonical',
+            'meta_title',
+            'meta_keyword',
+            'meta_description',
+            'description',
+            'content'
+        )->withTimestamps();
+    }
+    
 }

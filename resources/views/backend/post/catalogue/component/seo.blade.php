@@ -6,18 +6,20 @@
       <div>
           <div>
               <div>
-                  <p class="text-[20px] text-[#1a0dab]">
-                      Học Laravel Framework - Học PHP
+                  <p class="text-[20px] text-[#1a0dab] meta_title">
+                    {{ 
+                        (old('meta_title',  (isset($postCatalogue->meta_title)))) ? old('meta_title',  (isset($postCatalogue->meta_title))): 'Bạn chưa có tiêu đề seo' 
+                    }}
                   </p>
               </div>
               <div>
-                  <p class="text-green-500 mb-[8px]">
-                      https://toidicode.com/hoc-laravel
+                  <p class="text-green-500 mb-[8px] canonical">
+                    {{ (old('canonical', (isset($postCatalogue->canonical)))) ? config('app.url').old('canonical').config('app.general.suffix') : 'Bạn chưa nhập đường dẫn' }}
                   </p>
               </div>
               <div>
-                  <p class="text-[14px]">
-                      Laravel là một php framework mới, ra đời vào tháng 04/2011.Ngay khi vừa mới ra mắt thì nó đã được cộng đồng chú ý đến bởi nhiều đặc điểm và tính năng mới ...
+                  <p class="text-[14px] meta_description">
+                    {{ (old('meta_description',  (isset($postCatalogue->meta_description)))) ? old('meta_description',  (isset($postCatalogue->meta_description))) : 'Bạn chưa có mô t seo' }}
                   </p>
               </div>
           </div>
@@ -72,16 +74,15 @@
                               </div>
                           </label>
                           <textarea 
-                              rows="6"
-                              cols="450"
+                              cols="5"
+                              rows="5"
                               type="text"
-                              name="meta-description"
-                              value="{{ old('meta-description', ($postCatalogue->name) ?? '' ) }}"
+                              name="meta_description"
                               class="form-control"
                               placeholder=""
                               autocomplete="off"
-                          >
-                          </textarea>
+                              {{-- value="{{ old('meta_description', ($postCatalogue->meta_description) ?? '' ) }}" --}}
+                              >{{ old('meta_description', ($postCatalogue->meta_description) ?? '') }}</textarea>
                       </div>
                   </div>
               </div>
@@ -90,17 +91,23 @@
                       <div class="form-row">
                           <label for="" class="block control-label">
                               <div class="flex justify-between items-center">
-                                  <span class="">Đường dẫn</span>
+                                  <span class="">Đường dẫn <span class="text-danger">(*)</span></span>
                               </div>
                           </label>
-                          <input 
-                              type="text"
-                              name="canonical"
-                              value="{{ old('canonicaln', ($postCatalogue->canonical) ?? '' ) }}"
-                              class="form-control"
-                              placeholder=""
-                              autocomplete="off"
-                          >
+                          <div class="relative w-full">
+                            <input 
+                                type="text"
+                                name="canonical"
+                                class="form-control w-full"    
+                                placeholder=""  
+                                autocomplete="off"
+                              value="{{ old('canonical', ($postCatalogue->canonical) ?? '' ) }}"
+                            >
+                            <span   
+                                class="baseUrl absolute inset-y-0 left-0 flex items-center px-3 bg-slate-200 border-gray-300">
+                                {{ config('app.url') }}
+                            </span>
+                        </div>
                       </div>
                   </div>
               </div>

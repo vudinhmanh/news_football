@@ -15,34 +15,4 @@ class LanguageRepository extends BaseRepository implements LanguageRepositoryInt
   public function __construct(Languages $model){
     $this->model = $model;
   }
-  public function getAllPaginate(){
-    return Languages::paginate(15);
-  }
-  public function pagination
-  (
-    array $column = ['*'], 
-    array $condition = [], 
-    array $join = [], 
-    array $extend = [],
-    int $perpage = 10,
-    array $relations = []
-    )
-    {
-    $query = $this->model->select($column)->where(function($query) use ($condition){
-      if(isset($condition['keyword']) && !empty($condition['keyword'])){
-        $query->where('name', 'LIKE', '%'.$condition['keyword'].'%')
-              ->orWhere('canonical', 'LIKE', '%'.$condition['keyword'].'%');
-      }
-    });
-    // if(isset($relations) && !empty($relations))
-    // {
-    //   foreach($relations as $relation){
-    //     $query->withCount($relation);
-    //   }
-    // }
-    // if(!empty($join)){
-    //   $query->join(...$join);
-    // }
-    return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').':8000'.$extend['path']);
-  }
 }

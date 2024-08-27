@@ -24,7 +24,9 @@ class UserCatalogueRepository extends BaseRepository implements UserCatalogueRep
     array $join = [], 
     array $extend = [],
     int $perpage = 10,
-    array $relations = []
+    array $relations = [],
+    array $with = [],
+    array $orderBy = [],
     )
     {
     $query = $this->model->select($column)->where(function($query) use ($condition){

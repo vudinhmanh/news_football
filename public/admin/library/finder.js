@@ -5,16 +5,28 @@
     if($('.ckeditor')){
       $('.ckeditor').each(function(){
         let editor = $(this);
-        let elementId = editor.attr('id')
-        VM.ckeditor4(elementId);
+        let elementId = editor.attr('id');
+        let elementHeight = editor.attr('data-height');
+        VM.ckeditor4(elementId, elementHeight);
       });
     }
   }
-  VM.ckeditor4 = (elementId) => {
-    // if(typeof(elementHeight) == 'undefined'){
-    //     elementHeight = 500;
-    // }
+  //Upload nhiều ảnh ckeditor
+  VM.multipleUploadImageCkeditor = () => {
+    $(document).on('click', '.multipleUploadImageCkeditor', function(e){
+      let object = $(this);
+      let target = object.attr('data-target');
+      VM.browseServerCkeditor(object, 'Images', target);
+      e.preventDefault();
+    });
+  }
+
+  VM.ckeditor4 = (elementId, elementHeight) => {
+    if(typeof(elementHeight) == 'undefined'){
+        elementHeight = 500;
+    }
     CKEDITOR.replace( elementId, {
+        autoUpdateElement: false,
         height: elementHeight,
         removeButtons: '',
         entities: true,
@@ -42,6 +54,13 @@
       VM.setupCkFinder2(input, type);
     });
   }
+  VM.uploadImageAvatar = () => {
+    $('.image-target').click(function(){
+      let input = $(this);
+      let type = 'Images';
+      VM.browseServerAvatar(input, type);
+    })
+  }
 
   VM.setupCkFinder2 = (object ,type) => {
     if(typeof(type) == 'undefined'){
@@ -55,9 +74,45 @@
     finder.popup();
   }
 
+  VM.browseServerAvatar = (object ,type) => {
+    if(typeof(type) == 'undefined'){
+      type = 'Images';
+    }
+    var finder = new CKFinder();
+    finder.resourceType = type;
+    finder.selectActionFunction = function(fileUrl, data){
+      object.find('img').attr('src', fileUrl);
+      object.siblings('input').val(fileUrl);
+    }
+    finder.popup();
+  }
+  VM.browseServerCkeditor = (object, type, target) => {
+    if(typeof(type) == 'undefined'){
+      type = 'Images';
+    }
+    var finder = new CKFinder();
+    finder.resourceType = type;
+    finder.selectActionFunction = function(fileUrl, data, allFiles){
+      let html = '';
+      for(var i = 0; i < allFiles.length; i++){
+        var image = allFiles[i].url;
+        html += '<div class="image-content">'
+        html += '<figure>'
+        html += '<img src="'+image+'" alt="'+image+'" />'
+        html += '<figcaption>Nhập vào mô tả cho ảnh</figcaption>'
+        html += '</figure>'
+        html += '</div>'
+      }
+      CKEDITOR.instances[target].insertHtml(html)
+    }
+    finder.popup();
+  }
+
   $(document).ready(function(){
     VM.uploadImageToInput();
     VM.setupCkeditor();
+    VM.uploadImageAvatar(); 
+    VM.multipleUploadImageCkeditor();
   })
 
-})(jQuery)
+})(jQuery);

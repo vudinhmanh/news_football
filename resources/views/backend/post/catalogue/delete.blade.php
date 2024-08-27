@@ -1,4 +1,13 @@
 @include('backend.dashboard.component.breadcrump', ['title' => $config['seo']['delete']['title']])
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <form action="{{ route('post.catalogue.destroy', $postCatalogue->id) }}" method="post" class="box">
   @csrf
   @method('DELETE')
@@ -7,7 +16,7 @@
           <div class="col-lg-5">
               <div class="panel-head">
                   <div class="">
-                      <p class="text-2xl text-red-500">Bạn muốn xoá ngôn ngữ: {{ $postCatalogue->name }}</p>
+                      <p class="text-2xl text-red-500">Bạn muốn xoá bài viết có tiêu đề: {{ $postCatalogue->name }}</p>
                       <p class="font-semibold">Lưu ý: Những thông tin sau khi xoá không thể khôi phục </p>
                   </div>
               </div>
@@ -16,9 +25,9 @@
               <div class="ibox">
                   <div class="ibox-content">
                       <div class="row mb15">
-                          <div class="col-lg-6">
+                          <div class="col-lg-5">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Tên ngôn ngữ <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">Tiêu đề <span class="text-danger">(*)</span></label>
                                   <input 
                                       type="text"
                                       name="name"
@@ -30,13 +39,14 @@
                                   >
                               </div>
                           </div>
-                          <div class="col-lg-6">
+                          <div class="col-lg-7">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Từ khoá <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">Đường dẫn <span class="text-danger">(*)</span></label>
                                   <input 
                                       type="text"
                                       name="canonical"
-                                      value="{{ old('canonical', ($postCatalogue->canonical) ?? '' ) }}"
+                                      value="{{ old('canonical', isset($postCatalogue->canonical) ? config('app.url').$postCatalogue->canonical.config('app.general.suffix') : '') }}"
+
                                       class="form-control"
                                       placeholder=""
                                       autocomplete="off"

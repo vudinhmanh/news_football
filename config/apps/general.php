@@ -10,4 +10,8 @@
       '1' => 'No follow',
       '2' => 'Follow'
     ],
+    'catalogue' => [
+      '0' => 'Root',
+    ],
+    'suffix' => '.html'
   ];  

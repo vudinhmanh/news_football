@@ -6,16 +6,28 @@ use App\Services\Interfaces\PostCatalogueServiceInterface  as PostCatalogueServi
 use App\Repositories\Interfaces\PostCatalogueRepositoryInterface  as PostCatalogueRepository;
 use App\Http\Requests\StorePostCatalogueRequest;
 use App\Http\Requests\UpdatePostCatalogueRequest;
+use App\Classes\Nestedsetbie;
+use App\Http\Requests\DeletePostCatalogueRequest;
+use App\Services\BaseService;
 class PostCatalogueController extends Controller
 {
     protected $postCatalogueService;
     protected $postCatalogueRepository;
+    protected $language;
     public function __construct(
         PostCatalogueService $postCatalogueService,
         PostCatalogueRepository $postCatalogueRepository,
     ){
         $this->postCatalogueService = $postCatalogueService;
         $this->postCatalogueRepository = $postCatalogueRepository;
+        $this->netedset = new Nestedsetbie(
+            [
+              'table' => 'post_catalogues',
+              'foreignkey' => 'post_catalogue_id',
+              'language_id' => 1,
+            ]
+          );
+        $this->language = $this->currentLanguage();
     }
     public function index(Request $request)
     {
@@ -45,31 +57,38 @@ class PostCatalogueController extends Controller
         $config = $this->configData();
         $config['seo'] = config('apps.postcatalogue');
         $config['method'] = 'create';
+        $dropdown = $this->netedset->Dropdown();
         $template = 'backend.post.catalogue.store';
         return view('backend.dashboard.layout',
             compact(
                 'template',
                 'config',
+                'dropdown'
             )
         );
     }
     public function store(StorepostCatalogueRequest $request){
         if($this->postCatalogueService->create($request)){
-            return redirect()->route('post.catalogue.index')->with('success', "Thêm ngôn ngữ thành công");    
+            return redirect()->route('post.catalogue.index')->with('success', "Thêm thành công");    
         }
-        return redirect()->route('post.catalogue.index')->with('error', "Thêm ngôn ngữ thất bại");    
+        return redirect()->route('post.catalogue.index')->with('error', "Thêm ngữ thất bại");    
     }
     public function edit($id){
-        $postCatalogue = $this->postCatalogueRepository->findById($id);
+        $postCatalogue = $this->postCatalogueRepository->getPostCatalogueById(
+            $id, 
+            $this->language
+        );
         $config = $this->configData();
-        $config['seo'] = config('apps.postCatalogue');
+        $config['seo'] = config('apps.postcatalogue');
         $config['method'] = 'edit'; 
-        $template = 'backend.postCatalogue.store';
+        $dropdown = $this->netedset->Dropdown();
+        $template = 'backend.post.catalogue.store';
         return view('backend.dashboard.layout',
             compact(
                 'template',
                 'config',
-                'postCatalogue'
+                'postCatalogue',
+                'dropdown'
             )
         );
     }
@@ -80,7 +99,7 @@ class PostCatalogueController extends Controller
         return redirect()->route('post.catalogue.index')->with('error', "Sửa thất bại");    
     }
     public function delete($id){
-        $postCatalogue = $this->postCatalogueRepository->findById($id);
+        $postCatalogue = $this->postCatalogueRepository->getPostCatalogueById($id, $this->language);
         $template = 'backend.post.catalogue.delete';
         $config['seo'] = config('apps.postcatalogue');
         return view('backend.dashboard.layout',
@@ -91,11 +110,11 @@ class PostCatalogueController extends Controller
             )
         );
     }
-    public function destroy($id) {
+    public function destroy($id, DeletePostCatalogueRequest $request) {
         if($this->postCatalogueService->destroy($id)){
-            return redirect()->route('postCatalogue.index')->with('success', "Xoá thành công");    
+            return redirect()->route('post.catalogue.index')->with('success', "Xoá thành công");    
         }
-        return redirect()->route('postCatalogue.index')->with('error', "Xoá thất bại");    
+        return redirect()->route('post.catalogue.index')->with('error', "Xoá thất bại");    
     }
     private function configData(){
         return [
@@ -103,6 +122,7 @@ class PostCatalogueController extends Controller
                     '/Admin/plugins/ckfinder_2/ckfinder.js',
                     '/Admin/plugins/ckeditor/ckeditor.js',
                     '/Admin/library/finder.js',
+                    '/Admin/library/seo.js',
                     'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
                 ],
                 'css' => [
