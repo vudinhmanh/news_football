@@ -42,9 +42,10 @@ class BaseRepository implements BaseRepositoryInterface
   public function findById($modelId, array $column = ['*'], array $relation = []){
     return $this->model->select($column)->with($relation)->findOrFail($modelId);
   }
-  public function createLanguagePivot($model, array $payload = []){
-    return $model->languages()->attach($model->id, $payload);
+  public function createPivot($model, array $payload = [], string $relation = ''){
+    return $model->{$relation}()->attach($model->id, $payload);
   }
+  
   public function pagination
   (
     array $column = ['*'], 
@@ -61,7 +62,7 @@ class BaseRepository implements BaseRepositoryInterface
       if(isset($condition['keyword']) && !empty($condition['keyword'])){
         $query->where('name', 'LIKE', '%'.$condition['keyword'].'%');
       }
-      if(isset($condition['publish']) && !empty($condition['publish']) != 0){
+      if (isset($condition['publish']) && !empty($condition['publish'])) {
         $query->where('publish', '=', $condition['publish']);
       }
       if(isset($condition['where']) && count($condition['where'])){

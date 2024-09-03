@@ -44,7 +44,7 @@ class UserController extends Controller
         );
     }
     public function create()
-    {
+    {   
         $provinces = $this->provideRepository->all();
         $config = $this->configData();
         $config['seo'] = config('apps.user');

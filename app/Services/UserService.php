@@ -82,7 +82,7 @@ class UserService implements UserServiceInterface
   public function updateStatus($post = []){
     DB::beginTransaction();
     try{
-      $payload[$post['field']] = (($post['value'] == 1) ? 2 : 1);
+      $payload[$post['field']] = (($post['value'] == 1) ? 0 : 1);
       $user = $this->userRepository->update($post['modelId'], $payload);
       DB::commit();
       return true;

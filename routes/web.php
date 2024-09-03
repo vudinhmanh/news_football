@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PostCatalogueController;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\UserCatalogueController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Backend\AuthenticateMiddleware;
@@ -87,7 +88,7 @@ Route::group(['prefix' => 'language'], function(){
                                                             ->where(['id'], '[0-9]+')
                                                             ->name('language.destroy')->middleware('admin');
 });
-//POST
+//POST CATALOGUE
 Route::group(['prefix' => 'post/catalogue'], function(){
     Route::get('index', [PostCatalogueController::class, 'index'])->name('post.catalogue.index')->middleware('admin');
     Route::get('create', [PostCatalogueController::class, 'create'])->name('post.catalogue.create')->middleware('admin');
@@ -103,6 +104,23 @@ Route::group(['prefix' => 'post/catalogue'], function(){
     Route::delete('destroy/{id}', [PostCatalogueController::class, 'destroy'])
                                                             ->where(['id'], '[0-9]+')
                                                             ->name('post.catalogue.destroy')->middleware('admin');
+});
+//POST
+Route::group(['prefix' => 'post'], function(){
+    Route::get('index', [PostController::class, 'index'])->name('post.index')->middleware('admin');
+    Route::get('create', [PostController::class, 'create'])->name('post.create')->middleware('admin');
+    Route::post('store', [PostController::class, 'store'])->name('post.store')->middleware('admin');
+    Route::get('edit/{id}', [PostController::class, 'edit'])->where(['id'], '[0-9]+')
+                                                            ->name('post.edit')->middleware('admin');
+    Route::post('update/{id}', [PostController::class, 'update'])
+                                                            ->where(['id'], '[0-9]+')
+                                                            ->name('post.update')->middleware('admin');
+    Route::get('delete/{id}', [PostController::class, 'delete'])
+                                                            ->where(['id'], '[0-9]+')
+                                                            ->name('post.delete')->middleware('admin');
+    Route::delete('destroy/{id}', [PostController::class, 'destroy'])
+                                                            ->where(['id'], '[0-9]+')
+                                                            ->name('post.destroy')->middleware('admin');
 });
 //AJAX
 Route::get('ajax/location/getLocation', [LocationController::class, 'getLocation'])->name('ajax.location.getLocation')->middleware('admin');;
