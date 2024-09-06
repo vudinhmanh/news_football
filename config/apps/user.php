@@ -12,5 +12,10 @@ return [
   ],
   'delete' => [
     'title' => 'Xoá thành viên'
+  ],
+  'catalogue' => [
+    '0' => 'Chọn nhóm thành viên',
+    '1' => 'Quản trị viên',
+    '2' => 'Cộng tác viên'
   ]
 ];

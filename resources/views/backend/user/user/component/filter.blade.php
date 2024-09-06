@@ -11,10 +11,14 @@
         @endfor
       </select>
       <!-- Phần chọn loại user -->
-      <select name="user_catalogue_id" class="px-4 py-2 rounded-none border outline-none border-gray-300">
-        <option value="0">User</option>
-        <option value="1">Admin</option>
-      </select>
+    @php
+      $catalogue = request('catalogue') ?? old('catalogue') ?? '-1'; 
+    @endphp
+    <select name="catalogue" class="px-4 py-2 rounded-none border outline-none border-gray-300 ">
+      @foreach(config('apps.user.catalogue') as $key => $val)
+      <option {{ ($catalogue == $key) ? 'selected' : '' }} value="{{ $key }}">{{$val}}</option>
+      @endforeach
+    </select>
     </div>
     <!-- Phần tìm kiếm -->
     <div class="flex items-center space-x-4">

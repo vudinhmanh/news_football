@@ -11,8 +11,8 @@
         @endfor
       </select>
       @php
-      $publish = request('publish') ?? old('publish'); 
-    @endphp
+        $publish = request('publish') ?? old('publish'); 
+      @endphp
       <select name="publish" class="px-4 py-2 rounded-none border outline-none border-gray-300 ">
         @foreach(config('apps.general.publish') as $key => $val)
         <option {{ ($publish == $key) ? 'selected' : '' }} value="{{ $key }}">{{$val}}</option>
@@ -33,7 +33,6 @@
           Tìm kiếm
         </button>
       </div>
-  
       <!-- Nút Thêm mới -->
       <a href="{{ route('post.create') }}" class="btn btn-danger flex items-center px-4 py-2 rounded-lg text-white !mb-0">
         <i class="fa fa-plus mr-2"></i> Thêm mới bài viết

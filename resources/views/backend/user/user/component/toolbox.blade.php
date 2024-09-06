@@ -13,7 +13,7 @@
         <a href="#" class="changeStatusAll" data-field="publish" data-model="User" data-value="0">Unpublish toàn bộ</a>
       </li>
   </ul>
-  <a class="close-link">
+  {{-- <a class="close-link">
       <i class="fa fa-times"></i>
-  </a>
+  </a> --}}
 </div>

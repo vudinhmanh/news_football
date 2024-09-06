@@ -55,7 +55,6 @@ class BaseRepository implements BaseRepositoryInterface
     int $perpage = 10,
     array $relations = [],
     array $orderBy = [],
-    array $where = [],
     )
     {
     $query = $this->model->select($column)->where(function($query) use ($condition){

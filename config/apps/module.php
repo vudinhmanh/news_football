@@ -31,9 +31,6 @@ return [
                 ],
             ],
         ],
-
-
-
         [
             'title' => 'Cấu  hình chung',
             'icon' => 'fa fa-file',

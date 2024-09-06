@@ -7,7 +7,6 @@
       <th>Tiêu đề bài viết</th>
       <th class="w-[80px]">Vị trí</th>
       <th>Tình trạng</th>
-
       <th class="text-center">Thao tác</th>
   </tr> 
   </thead>
@@ -54,7 +53,7 @@
               <td class="text-center js-switch-{{ $post->id }}"> 
                   <input type="checkbox" value="{{ $post->publish }}" class="js-switch status" data-field="publish" 
                   data-model="Post"  
-                    {{ ($post->publish == 1) ? 'checked' : ''}}
+                    {{ ($post->publish == 2) ? 'checked' : ''}}
                     data-modelId="{{ $post->id }}"
                   />
               </td>

@@ -7,10 +7,10 @@
   </a>
   <ul class="dropdown-menu dropdown-user">
       <li>
-        <a href="#" class="changeStatusAll" data-field="publish" data-model="PostCatalogue" data-value="1">Publish toàn bộ</a>
+        <a href="#" class="changeStatusAll" data-field="publish" data-model="PostCatalogue" data-value="2">Xuất bản</a>
       </li>
       <li>
-        <a href="#" class="changeStatusAll" data-field="publish" data-model="PostCatalogue" data-value="0">Unpublish toàn bộ</a>
+        <a href="#" class="changeStatusAll" data-field="publish" data-model="PostCatalogue" data-value="1">Bỏ xuất bản</a>
       </li>
   </ul>
   <a class="close-link">

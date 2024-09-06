@@ -15,7 +15,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     $this->model = $model;
   }
   public function getAllPaginate(){
-    return User::paginate(15);
+    return User::paginate(10);
   }
   public function pagination
   (
@@ -35,6 +35,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
               ->orWhere('email', 'LIKE', '%'.$condition['keyword'].'%')
               ->orWhere('address', 'LIKE', '%'.$condition['keyword'].'%')
               ->orWhere('phone', 'LIKE', '%'.$condition['keyword'].'%');
+      }
+      if (isset($condition['catalogue']) && !empty($condition['catalogue'])) {
+        $query->where('user_catalogue_id', '=', $condition['catalogue']);
       }
     })->with('user_catalogues');
     if(!empty($join)){

@@ -10,6 +10,14 @@
           <option {{ ($perpage == $i) ? 'selected' : '' }} value="{{ $i }}">{{ $i }} bản ghi</option>
         @endfor
       </select>
+      @php
+      $publish = request('publish') ?? old('publish'); 
+    @endphp
+      <select name="publish" class="px-4 py-2 rounded-none border outline-none border-gray-300 ">
+        @foreach(config('apps.general.publish') as $key => $val)
+        <option {{ ($publish == $key) ? 'selected' : '' }} value="{{ $key }}">{{$val}}</option>
+        @endforeach
+      </select>
     </div>
     <!-- Phần tìm kiếm -->
     <div class="flex items-center space-x-4">

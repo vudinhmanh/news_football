@@ -30,7 +30,7 @@ class UserCatalogueService implements UserCatalogueServiceInterface
     $perpage = $request->integer('perpage');
     $userCatalogue = $this->userCatalogueRepository->pagination(
       $this->paginateSelect(), $condition, [], ['path' => '/user/catalogue/index'], 
-              $perpage, []
+              $perpage, ['users']
     );
     return $userCatalogue;
   }
@@ -85,7 +85,7 @@ class UserCatalogueService implements UserCatalogueServiceInterface
   public function updateStatus($post = []){
     DB::beginTransaction();
     try{
-      $payload[$post['field']] = (($post['value'] == 1) ? 0 : 1);
+      $payload[$post['field']] = (($post['value'] == 1) ? 2 : 1);
         $user = $this->userCatalogueRepository->update($post['modelId'], $payload);
         $this->changeUserStatus($post, $payload[$post['field']]);
 

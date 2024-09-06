@@ -7,9 +7,9 @@
       <th>Họ Tên</th>
       <th>Email</th>
       <th>Số điện thoại</th>
-      <th>Địa chỉ</th>
+      {{-- <th>Địa chỉ</th> --}}
       <th>Vai trò</th>
-      <th class="text-center">Tình Trạng</th>
+      {{-- <th class="text-center">Tình Trạng</th> --}}
       <th class="text-center">Thao tác</th>
   </tr>
   </thead>
@@ -29,19 +29,19 @@
               <td>
                   {{ $user->phone }}
               </td>
-              <td>
+              {{-- <td>
                   {{ $user->address }}
-              </td>
+              </td> --}}
               <td>
                   {{ $user->user_catalogues->name }}
               </td>
-              <td class="text-center js-switch-{{ $user->id }}"> 
+              {{-- <td class="text-center js-switch-{{ $user->id }}"> 
                   <input type="checkbox" value="{{ $user->publish }}" class="js-switch status" data-field="publish" 
                   data-model="User"  
                     {{ ($user->publish == 1) ? 'checked' : ''}}
                     data-modelId="{{ $user->id }}"
                   />
-              </td>
+              </td> --}}
               <td class="text-center"> 
                   <a href="{{ route('user.edit', $user->id) }}" class="btn btn-success"><i class="fa fa-edit"></i></a>
                   <a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
