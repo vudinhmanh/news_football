@@ -38,4 +38,4 @@
       @endif
   </tbody>
 </table>
-{{  $postCatalogues->links('pagination::bootstrap-4') }}
+{{  $postCatalogues->links('backend.pagination.paginate') }}

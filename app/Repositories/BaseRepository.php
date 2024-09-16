@@ -85,6 +85,6 @@ class BaseRepository implements BaseRepositoryInterface
     if(isset($orderBy) && !empty($orderBy)){
       $query->orderBy($orderBy[0], $orderBy[1]);
     }
-    return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').$extend['path']);
+    return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').'/'.$extend['path']);
   }
 }

@@ -34,7 +34,7 @@ class PostService extends BaseService implements PostServiceInterface
     $condition['where'] = [
       ['tb2.language_id', '=', $this->language]
     ];
-    $perpage = $request->integer('perpage');
+    $perpage = $request->input('perpage', 10);
     $post = $this->postRepository->pagination(
       $this->paginateSelect(), 
         $condition, [
@@ -42,7 +42,7 @@ class PostService extends BaseService implements PostServiceInterface
             'post_language as tb2','tb2.post_id', '=', 'posts.id'
           ]
         ], 
-        ['path' => 'post/catalogue/index'], 
+        ['path' => 'post/index'], 
         $perpage, 
         ['post_catalogues'],
         [

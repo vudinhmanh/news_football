@@ -43,6 +43,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     if(!empty($join)){
       $query->join(...$join);
     }
-    return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').':8000'.$extend['path']);
+    return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').$extend['path']);
   }
 }

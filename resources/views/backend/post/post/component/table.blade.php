@@ -66,4 +66,4 @@
       @endif
   </tbody>
 </table>
-{{-- {{  $post->links('pagination::bootstrap-4') }} --}}
+{{  $posts->links('backend.pagination.paginate') }}

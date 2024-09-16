@@ -6,7 +6,7 @@
     <!-- Phần chọn số bản ghi -->
     <div class="flex items-center">
       <select name="perpage" class="px-4 py-2 rounded-none border outline-none border-gray-300 ">
-        @for($i = 10; $i <= 50; $i+=10)
+        @for($i = 10; $i <= 50; $i+=5)
           <option {{ ($perpage == $i) ? 'selected' : '' }} value="{{ $i }}">{{ $i }} bản ghi</option>
         @endfor
       </select>

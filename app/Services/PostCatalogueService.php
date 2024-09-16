@@ -42,7 +42,7 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
     $condition['where'] = [
       ['tb2.language_id', '=', $this->language]
     ];
-    $perpage = $request->integer('perpage');
+    $perpage = $request->input('perpage', 10);
     $postCatalogue = $this->postCatalogueRepository->pagination(
       $this->paginateSelect(), 
         $condition, [

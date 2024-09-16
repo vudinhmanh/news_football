@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\PostCatalogueLanguage;
 use App\Models\Post;
+
 use App\Repositories\BaseRepository;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 
@@ -15,6 +17,9 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
   protected $model;
   public function __construct(Post $model){
     $this->model = $model;
+  }
+  public function getAllPaginate(){
+    return Post::paginate(10);
   }
   public function getPostById(int $id = 0, $language_id = 0){
     return $this->model->select
