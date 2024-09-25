@@ -11,11 +11,17 @@
         @endfor
       </select>
       @php
-        $publish = request('publish') ?? old('publish'); 
+        $publish = request('publish') ?: old('publish'); 
+        $postCatalogueId = request('post_catalogue_id') ?: old('post_catalogue_id'); 
       @endphp
       <select name="publish" class="px-4 py-2 rounded-none border outline-none border-gray-300 ">
         @foreach(config('apps.general.publish') as $key => $val)
         <option {{ ($publish == $key) ? 'selected' : '' }} value="{{ $key }}">{{$val}}</option>
+        @endforeach
+      </select>
+      <select name="post_catalogue_id" class="px-8 py-2 rounded-none border outline-none border-gray-300">
+        @foreach($dropdown as $key => $val)
+        <option {{ ($postCatalogueId == $key) ? 'selected' : '' }} value="{{ $key }}">{{$val}}</option>
         @endforeach
       </select>
     </div>

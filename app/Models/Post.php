@@ -10,7 +10,7 @@ use App\Traits\QueryScopes;
 
 class Post extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, QueryScopes;
 
     protected $fillable = [
         'image',

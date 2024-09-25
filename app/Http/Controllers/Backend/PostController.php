@@ -42,12 +42,14 @@ class PostController extends Controller
         ];
         $config['seo'] = config('apps.post');
         $template = 'backend.post.post.index';
+        $dropdown = $this->netedset->Dropdown();
         return view(
             'backend.dashboard.layout',
             compact(
                 'template',
                 'config',
-                'posts'
+                'posts',
+                'dropdown'
             )
         );
     }

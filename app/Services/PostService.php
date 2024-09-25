@@ -31,21 +31,23 @@ class PostService extends BaseService implements PostServiceInterface
 
     $condition['keyword'] = addslashes($request->input('keyword'));
     $condition['publish'] = $request->integer('publish');
+    $condition['post_catalogue_id'] = $request->input('post_catalogue_id');
     $condition['where'] = [
-      ['tb2.language_id', '=', $this->language]
+      ['tb2.language_id', '=', $this->language],
     ];
     $perpage = $request->input('perpage', 10);
     $post = $this->postRepository->pagination(
       $this->paginateSelect(), 
         $condition, 
         $perpage, 
-        ['path' => 'post/index'],
+        ['path' => 'post/index', 'groupBy' => $this->paginateSelect()],
         ['posts.id', 'DESC'],
         [
-          ['post_language as tb2','tb2.post_id', '=', 'posts.id']
+          ['post_language as tb2','tb2.post_id', '=', 'posts.id'],
+          ['post_catalogue_post as tb3', 'posts.id', '=', 'tb3.post_id'],
         ], 
         ['post_catalogues'],
-
+        $this->whereRaw($request),
     );  
     return $post;
   }
@@ -56,7 +58,6 @@ class PostService extends BaseService implements PostServiceInterface
       $payload = $request->only($this->payload());
       $payload['user_id'] = Auth::id();
       $post = $this->postRepository->create($payload);
-
       // dd($post);
       if($post->id > 0){
         $payloadLanguage = $request->only($this->payloadLanguage());
@@ -152,32 +153,30 @@ public function updateStatusAll($post){
       return false;
   }
 }
-// private function changeUserStatus($post, $value){
-//   DB::beginTransaction();
-//   try{
-//       $array = [];
-//       if(isset($post['modelId'])){
-//           $array[] = $post['modelId'];
-//       }else{
-//           $array = $post['id'];
-//       }
-//       $payload[$post['field']] = $value;
-//       $this->userRepository->updateByWhereIn('user_catalogue_id', $array, $payload);
-//       DB::commit();
-//       return true;
-//   }catch(\Exception $e ){
-//       DB::rollBack();
-//       // Log::error($e->getMessage());
-//       echo $e->getMessage();die();
-//       return false;
-//   }
-// }  
 private function catalogue($request)
 {
     $catalogue = $request->input('catalogue') ?? [];
     return array_unique(array_merge($catalogue, [$request->post_catalogue_id]));
 }
-
+private function whereRaw($request){
+  $rawCondition = [];
+  if($request->integer('post_catalogue_id') > 0){
+      $rawCondition['whereRaw'] =  [
+          [
+              'tb3.post_catalogue_id IN (
+                  SELECT id
+                  FROM post_catalogues
+                  JOIN post_catalogue_language ON post_catalogues.id = post_catalogue_language.post_catalogue_id
+                  WHERE lft >= (SELECT lft FROM post_catalogues as pc WHERE pc.id = ?)
+                  AND rgt <= (SELECT rgt FROM post_catalogues as pc WHERE pc.id = ?)
+              )',
+              [$request->integer('post_catalogue_id'), $request->integer('post_catalogue_id')]
+          ]
+      ];
+      
+  }
+  return $rawCondition;
+}
   private function paginateSelect(){
     return [
       'posts.id', 
