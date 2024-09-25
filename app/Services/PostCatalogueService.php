@@ -36,29 +36,26 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
     );
   }
   public function paginate($request){
-
-    $condition['keyword'] = addslashes($request->input('keyword'));
-    $condition['publish'] = $request->integer('publish');
-    $condition['where'] = [
-      ['tb2.language_id', '=', $this->language]
-    ];
     $perpage = $request->input('perpage', 10);
-    $postCatalogue = $this->postCatalogueRepository->pagination(
-      $this->paginateSelect(), 
-        $condition, [
-          [
-            'post_catalogue_language as tb2','tb2.post_catalogue_id', '=', 'post_catalogues.id'
-          ]
-        ], 
-        ['path' => 'post/catalogue/index'], 
-        $perpage, 
-        [],
-        [
-          'post_catalogues.lft', 'ASC',
-        ]
-    );  
+    $condition = [
+      'keyword' => addslashes($request->input('keyword')),
+      'publish' => $request->integer('publish'),
+      'where' => [
+          ['tb2.language_id', '=', $this->language]
+      ]
+  ];
+  $postCatalogues = $this->postCatalogueRepository->pagination(
+    $this->paginateSelect(), 
+    $condition, 
+    $perpage,
+    ['path' => 'post.catalogue.index'],  
+    ['post_catalogues.lft', 'ASC'],
+    [
+        ['post_catalogue_language as tb2','tb2.post_catalogue_id', '=' , 'post_catalogues.id']
+    ], 
+);
     // dd($postCatalogue);
-    return $postCatalogue;
+    return $postCatalogues;
   }
   //Thêm dữ liệu vào bảng post_catalogue_language
   public function create($request){

@@ -37,17 +37,15 @@ class PostService extends BaseService implements PostServiceInterface
     $perpage = $request->input('perpage', 10);
     $post = $this->postRepository->pagination(
       $this->paginateSelect(), 
-        $condition, [
-          [
-            'post_language as tb2','tb2.post_id', '=', 'posts.id'
-          ]
-        ], 
-        ['path' => 'post/index'], 
+        $condition, 
         $perpage, 
-        ['post_catalogues'],
+        ['path' => 'post/index'],
+        ['posts.id', 'DESC'],
         [
-          'posts.id', 'DESC',
-        ]
+          ['post_language as tb2','tb2.post_id', '=', 'posts.id']
+        ], 
+        ['post_catalogues'],
+
     );  
     return $post;
   }

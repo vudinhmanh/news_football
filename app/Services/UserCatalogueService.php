@@ -25,15 +25,22 @@ class UserCatalogueService implements UserCatalogueServiceInterface
     $this->userCatalogueRepository = $userCatalogueRepository;
   }
   public function paginate($request){
-
-    $condition['keyword'] = addslashes($request->input('keyword'));
-    $perpage = $request->input('perpage', 10);
-    $userCatalogue = $this->userCatalogueRepository->pagination(
-      $this->paginateSelect(), $condition, [], ['path' => '/user/catalogue/index'], 
-              $perpage, ['users']
+    $condition = [
+        'keyword' => addslashes($request->input('keyword')),
+        'publish' => $request->integer('publish')
+    ];
+    $perPage = $request->integer('perpage');
+    $userCatalogues = $this->userCatalogueRepository->pagination(
+        $this->paginateSelect(), 
+        $condition, 
+        $perPage, 
+        ['path' => 'user/catalogue/index'], 
+        ['id', 'DESC'],  
+        [],
+        ['users']
     );
-    return $userCatalogue;
-  }
+    return $userCatalogues;
+}
   public function create($request){
     DB::beginTransaction();
     try{

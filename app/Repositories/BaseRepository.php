@@ -50,11 +50,12 @@ class BaseRepository implements BaseRepositoryInterface
   (
     array $column = ['*'], 
     array $condition = [], 
-    array $join = [], 
+    int $perPage = 1,
     array $extend = [],
-    int $perpage = 10,
+    array $orderBy = ['id', 'DESC'],
+    array $join = [],
     array $relations = [],
-    array $orderBy = [],
+    array $rawQuery = []
     )
     {
     $query = $this->model->select($column)->where(function($query) use ($condition){
@@ -85,6 +86,6 @@ class BaseRepository implements BaseRepositoryInterface
     if(isset($orderBy) && !empty($orderBy)){
       $query->orderBy($orderBy[0], $orderBy[1]);
     }
-    return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').'/'.$extend['path']);
+    return $query->paginate($perPage)->withQueryString()->withPath(env('APP_URL').'/'.$extend['path']);
   }
 }

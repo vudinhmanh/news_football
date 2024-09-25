@@ -23,11 +23,14 @@ class UserService implements UserServiceInterface
   public function paginate($request){
     $condition['keyword'] = addslashes($request->input('keyword'));
     $condition['catalogue'] = $request->integer('catalogue');
-    $perpage = $request->input('perpage', 10);
-    $user = $this->userRepository->pagination(
-      $this->paginateSelect(), $condition, [], ['path' => '/user/index'], $perpage
-    );
-    return $user;
+    $perPage = $request->integer('perpage', 10);
+    $users = $this->userRepository->userPagination(
+      $this->paginateSelect(), 
+      $condition, 
+      $perPage,
+      ['path' => 'user/index'], 
+  );
+    return $users;
   }
   public function create($request){
     DB::beginTransaction();

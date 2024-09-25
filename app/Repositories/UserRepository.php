@@ -17,16 +17,15 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
   public function getAllPaginate(){
     return User::paginate(10);
   }
-  public function pagination
+  public function userPagination
   (
     array $column = ['*'], 
     array $condition = [], 
-    array $join = [], 
+    int $perPage = 1,
     array $extend = [],
-    int $perpage = 10,
-    array $relation = [],
-    array $select = [],
-    array $orderBy = [],
+    array $orderBy = ['id', 'DESC'],
+    array $join = [],
+    array $relations = [],
     )
     {
     $query = $this->model->select($column)->where(function($query) use ($condition){
@@ -43,6 +42,6 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     if(!empty($join)){
       $query->join(...$join);
     }
-    return $query->paginate($perpage)->withQueryString()->withPath(env('APP_URL').$extend['path']);
+    return $query->paginate($perPage)->withQueryString()->withPath(env('APP_URL').$extend['path']);
   }
 }

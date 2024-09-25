@@ -16,11 +16,13 @@ interface BaseRepositoryInterface
   public function pagination(
     array $column = ['*'], 
     array $condition = [], 
-    array $join = [], 
+    int $perPage = 1,
     array $extend = [],
-    int $perpage = 10, 
-    array $relation = [],
-    array $orderBy = []);
+    array $orderBy = ['id', 'DESC'],
+    array $join = [],
+    array $relations = [],
+    array $rawQuery = [],
+  );
   public function updateByWhereIn(string $whereInField = '', array $whereIn = [], array $payload = []);
   public function createPivot($model, array $payload = [], string $relation = '');
 }
