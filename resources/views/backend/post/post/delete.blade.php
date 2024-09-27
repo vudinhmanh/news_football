@@ -16,8 +16,12 @@
           <div class="col-lg-5">
               <div class="panel-head">
                   <div class="">
-                      <p class="text-2xl text-red-500">Bạn muốn xoá bài viết có tiêu đề: {{ $post->name }}</p>
-                      <p class="font-semibold">Lưu ý: Những thông tin sau khi xoá không thể khôi phục </p>
+                      <p class="text-2xl text-red-500">
+                        {{__('messages.generalDescription') }}  
+                        {{ $post->name }}
+                        </p>
+                      <p class="font-bold">{{__('messages.generalWarning')}}
+                      </p>
                   </div>
               </div>
           </div>
@@ -27,7 +31,7 @@
                       <div class="row mb15">
                           <div class="col-lg-5">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Tiêu đề <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">{{__('messages.tableName') }} <span class="text-danger">(*)</span></label>
                                   <input 
                                       type="text"
                                       name="name"
@@ -41,7 +45,7 @@
                           </div>
                           <div class="col-lg-7">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Đường dẫn <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">{{__('messages.canonical') }} <span class="text-danger">(*)</span></label>
                                   <input 
                                       type="text"
                                       name="canonical"

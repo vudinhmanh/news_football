@@ -4,10 +4,9 @@
       <th>
           <input type="checkbox" value="" id="checkAll" class="input-checkbox">
       </th>
-      <th>Tiêu đề bài viết</th>
-      <th class="w-[80px]">Vị trí</th>
-      <th>Tình trạng</th>
-      <th class="text-center">Thao tác</th>
+      <th>{{__('messages.tableName') }}</th>
+      <th>{{__('messages.tableStatus') }}</th>
+      <th class="text-center">{{__('messages.tableAction') }}</th>
   </tr> 
   </thead>
   <tbody>
@@ -27,7 +26,7 @@
                             <p class="text-[#99c3ff] font-semibold text-[14px]">{{ $post->name }}</p>
                         </div>
                         <div>
-                            <span class="text-red-400">Danh mục: </span>
+                            <span class="text-red-400">{{ __('messages.catalogue') }}: </span>
                             @php
                                 $sortedPostCatalogues = $post->post_catalogues->sortBy('lft');
                             @endphp
@@ -42,14 +41,14 @@
                     </div>
                 </div>
               </td>
-              <td class="">
+              {{-- <td class="">
 
                 <input type="text" name="order" class="form-control"
                         value="{{$post->order}}"
                         data-id="{{$post->id}}"
                         data-model="Post"
                 >
-              </td>
+              </td> --}}
               <td class="text-center js-switch-{{ $post->id }}"> 
                   <input type="checkbox" value="{{ $post->publish }}" class="js-switch status" data-field="publish" 
                   data-model="Post"  

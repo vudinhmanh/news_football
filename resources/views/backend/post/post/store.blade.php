@@ -22,7 +22,8 @@
           <div class="col-lg-8">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>Thông tin chung</h5>
+                    <h5>{{__('postCatalogue.index.title') }}</h5>
+                    
                 </div>
                 <div class="ibox-content">
                     @include('backend.post.post.component.general')

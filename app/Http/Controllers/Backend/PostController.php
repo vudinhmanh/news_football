@@ -16,6 +16,7 @@ class PostController extends Controller
     public function __construct(
         PostService $postService,
         PostRepository $postRepository,
+
     ){
         $this->postService = $postService;
         $this->postRepository = $postRepository;
@@ -40,12 +41,14 @@ class PostController extends Controller
                 '/Admin/css/plugins/switchery/switchery.css'
             ]
         ];
-        $config['seo'] = config('apps.post');
+        $config['seo'] = __('messages.post');
         $template = 'backend.post.post.index';
         $dropdown = $this->netedset->Dropdown();
+
         return view(
             'backend.dashboard.layout',
             compact(
+
                 'template',
                 'config',
                 'posts',

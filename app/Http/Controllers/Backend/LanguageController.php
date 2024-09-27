@@ -105,4 +105,12 @@ class LanguageController extends Controller
                 ]
             ];
     }
+    public function switchBackendLanguage($id){
+        $language = $this->languageRepository->findById($id);
+        if($this->languageService->switch($id)){
+            session(['app_locale' => $language->canonical]);
+            \App::setLocale($language->canonical);
+        }
+        return redirect()->back(); 
+    }
 }

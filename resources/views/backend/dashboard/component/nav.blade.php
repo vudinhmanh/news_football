@@ -17,9 +17,16 @@
               </div>
           </form>
       </div>
+
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <span class="m-r-sm text-muted welcome-message">Welcome M - Shop.</span>
+                <div class="flex items-center justify-center w-[200px]">
+                    @foreach ($language as $key => $val)
+                        <a href="{{ route('language.switch', $val->id) }}" class="flex items-center justify-center object-cover h-[65px] {{ $val->current == 1 ? 'bg-slate-400' : '' }}">
+                            <img src="{{ $val->image }}" alt="" class="h-full">
+                        </a>
+                    @endforeach
+                </div>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">

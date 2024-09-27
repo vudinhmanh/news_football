@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
       <div class="form-row">
-          <label for="" class="control-label text-left">Tiêu đề nhóm bài viết<span class="text-danger">(*)</span></label>
+          <label for="" class="control-label text-left">{{ __('messages.title') }}<span class="text-danger">(*)</span></label>
           <input 
               type="text"
               name="name"
@@ -17,7 +17,7 @@
 <div class="row">
   <div class="col-lg-12">
       <div class="form-row">
-          <label for="" class="control-label text-left">Mô tả ngắn</label>
+          <label for="" class="control-label text-left">{{ __('messages.description') }}</label>
           <textarea 
               type="text"
               name="description"
@@ -36,8 +36,7 @@
   <div class="col-lg-12">
       <div class="form-row">
         <div class="flex justify-between align-middle">
-          <label for="" class="control-label text-left">Nội dung</label>
-          <a href="" class="multipleUploadImageCkeditor" data-target="ckContent">Upload nhiều hình ảnh</a>
+          <label for="" class="control-label text-left">{{ __('messages.content') }}</label>
         </div>
           <textarea 
               rows="6"

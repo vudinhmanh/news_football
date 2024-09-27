@@ -34,7 +34,7 @@ dd($users);
                     HOME
                 </a>
             </li>
-            @foreach(config('apps.module.module') as $key => $val)
+            @foreach(__('sidebar.module') as $key => $val)
             <li class="{{ (isset($val['name']) && (in_array($segment, $val['name'])) ? 'active' : '') }}">
                 <a href="#">
                     <i class="{{ $val['icon'] }}"></i>

@@ -32,7 +32,7 @@
               <td class="text-center js-switch-{{ $language->id }}"> 
                   <input type="checkbox" value="{{ $language->publish }}" class="js-switch status" data-field="publish" 
                   data-model="Language"  
-                    {{ ($language->publish == 1) ? 'checked' : ''}}
+                    {{ ($language->publish == 2) ? 'checked' : ''}}
                     data-modelId="{{ $language->id }}"
                   />
               </td>

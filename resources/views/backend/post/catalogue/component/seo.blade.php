@@ -1,6 +1,6 @@
 <div class="ibox">
   <div class="ibox-title">
-      <h5 class="uppercase">Cấu hình SEO</h5>
+      <h5 class="uppercase">{{ __('messages.seo') }}</h5>
   </div>
   <div class="ibox-content">
       <div>
@@ -8,18 +8,22 @@
               <div>
                   <p class="text-[20px] text-[#1a0dab] meta_title">
                     {{ 
-                        (old('meta_title',  (isset($postCatalogue->meta_title)))) ? old('meta_title',  (isset($postCatalogue->meta_title))): 'Bạn chưa có tiêu đề seo' 
+                        (old('meta_title',  (isset($postCatalogue->meta_title)))) ? old('meta_title',  (isset($postCatalogue->meta_title))):  __('messages.seoMetaTitle') 
                     }}
                   </p>
               </div>
               <div>
                   <p class="text-green-500 mb-[8px] canonical">
-                    {{ (old('canonical', (isset($postCatalogue->canonical)))) ? config('app.url').old('canonical').config('app.general.suffix') : 'Bạn chưa nhập đường dẫn' }}
+                    {{ 
+                        (old('canonical', (isset($postCatalogue->canonical)))) ? config('app.url').old('canonical').config('app.general.suffix') : __('messages.fillCanonical')
+                    }}
                   </p>
               </div>
               <div>
                   <p class="text-[14px] meta_description">
-                    {{ (old('meta_description',  (isset($postCatalogue->meta_description)))) ? old('meta_description',  (isset($postCatalogue->meta_description))) : 'Bạn chưa có mô t seo' }}
+                    {{ 
+                        (old('meta_description',  (isset($postCatalogue->meta_description)))) ? old('meta_description',  (isset($postCatalogue->meta_description))) : __('messages.fillMetaDescription')
+                    }}
                   </p>
               </div>
           </div>
@@ -29,8 +33,7 @@
                       <div class="form-row">
                           <label for="" class="block control-label">
                               <div class="flex justify-between items-center">
-                                  <span class="">Tiêu đề SEO</span>
-                                  <span class="count_meta-title">0 ký tự</span>
+                                  <span class="">{{__('messages.seoMetaTitle') }}</span>
                               </div>
                           </label>
                           <input 
@@ -49,8 +52,7 @@
                       <div class="form-row">
                           <label for="" class="block control-label">
                               <div class="flex justify-between items-center">
-                                  <span class="">Từ khoá SEO</span>
-                                  <span class="count_meta-title">0 ký tự</span>
+                                  <span class="">{{__('messages.seoMetaKeyword') }}</span>
                               </div>
                           </label>
                           <input 
@@ -69,8 +71,7 @@
                       <div class="form-row">
                           <label for="" class="block control-label">
                               <div class="flex justify-between items-center">
-                                  <span class="">Mô tả SEO</span>
-                                  <span class="count_meta-description">0 ký tự</span>
+                                  <span class="">{{__('messages.seoMetaDescription') }}</span>
                               </div>
                           </label>
                           <textarea 
@@ -91,7 +92,7 @@
                       <div class="form-row">
                           <label for="" class="block control-label">
                               <div class="flex justify-between items-center">
-                                  <span class="">Đường dẫn <span class="text-danger">(*)</span></span>
+                                  <span class="">{{__('messages.canonical') }} <span class="text-danger">(*)</span></span>
                               </div>
                           </label>
                           <div class="relative w-full">
@@ -101,7 +102,7 @@
                                 class="form-control w-full"    
                                 placeholder=""  
                                 autocomplete="off"
-                              value="{{ old('canonical', ($postCatalogue->canonical) ?? '' ) }}"
+                                value="{{ old('canonical', ($postCatalogue->canonical) ?? '' ) }}"
                             >
                             <span   
                                 class="baseUrl absolute inset-y-0 left-0 flex items-center px-3 bg-slate-200 border-gray-300">

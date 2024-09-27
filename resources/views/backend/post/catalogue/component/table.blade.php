@@ -4,9 +4,9 @@
       <th>
           <input type="checkbox" value="" id="checkAll" class="input-checkbox">
       </th>
-      <th>Tên nhóm</th>
-      <th>Tình trạng</th>
-      <th class="text-center">Thao tác</th>
+      <th>{{__('messages.tableName') }}</th>
+      <th>{{__('messages.tableStatus') }}</th>
+      <th class="text-center">{{__('messages.tableAction') }}</th>
   </tr> 
   </thead>
   <tbody>
@@ -19,9 +19,6 @@
               <td>
                 {{ str_repeat('|---', ((($postCatalogue->level > 0) ? ($postCatalogue->level - 1):0))).$postCatalogue->name }}
               </td>
-              {{-- <td>
-                  {{ $postCatalogue->canonical }}
-              </td> --}}
               <td class="text-center js-switch-{{ $postCatalogue->post_catalogue_id }}"> 
                   <input type="checkbox" value="{{ $postCatalogue->publish }}" class="js-switch status" data-field="publish" 
                   data-model="PostCatalogue"  

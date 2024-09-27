@@ -41,7 +41,7 @@ class PostCatalogueController extends Controller
                 '/Admin/css/plugins/switchery/switchery.css'
             ]
         ];
-        $config['seo'] = config('apps.postcatalogue');
+        $config['seo'] = __('messages.postCatalogue');
         $template = 'backend.post.catalogue.index';
         return view(
             'backend.dashboard.layout',
