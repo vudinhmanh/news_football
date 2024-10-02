@@ -55,7 +55,7 @@ class PostCatalogueController extends Controller
     public function create()
     {
         $config = $this->configData();
-        $config['seo'] = config('apps.postcatalogue');
+        $config['seo'] = __('messages.postCatalogue');
         $config['method'] = 'create';
         $dropdown = $this->netedset->Dropdown();
         $template = 'backend.post.catalogue.store';
@@ -79,7 +79,7 @@ class PostCatalogueController extends Controller
             $this->language
         );
         $config = $this->configData();
-        $config['seo'] = config('apps.postcatalogue');
+        $config['seo'] = __('messages.postCatalogue');
         $config['method'] = 'edit'; 
         $dropdown = $this->netedset->Dropdown();
         $template = 'backend.post.catalogue.store';
@@ -101,7 +101,7 @@ class PostCatalogueController extends Controller
     public function delete($id){
         $postCatalogue = $this->postCatalogueRepository->getPostCatalogueById($id, $this->language);
         $template = 'backend.post.catalogue.delete';
-        $config['seo'] = config('apps.postcatalogue');
+        $config['seo'] = __('messages.postCatalogue');
         return view('backend.dashboard.layout',
             compact(
                 'template',

@@ -21,10 +21,14 @@
       <div class="row">
           <div class="col-lg-5">
               <div class="panel-head">
-                  <div class="font-extrabold">Thông tin chung</div>
+                  <div class="font-extrabold">{{__('messages.generalTitle') }}</div>
                   <div class="panel-description">
-                      <p>Nhập thông tin chung cho nhóm thành viên</p>
-                      <p>Lưu ý: Những trường đánh dấu <span class="text-danger">(*)</span> là bắt buộc</p>
+                      <p>{{__('messages.userCatalogue.commonInfor') }}</p>
+                      <p>
+                        {{__('messages.generalRequiredField') }}
+                        <span class="text-danger">(*)</span> 
+                        {{__('messages.isRequired') }}
+                      </p>
                   </div>
               </div>
           </div>
@@ -34,7 +38,7 @@
                       <div class="row mb15">
                           <div class="col-lg-6">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Tên nhóm <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">{{__('messages.userCatalogue.userCatalogueName') }} <span class="text-danger">(*)</span></label>
                                   <input 
                                       type="text"
                                       name="name"
@@ -47,7 +51,7 @@
                           </div>
                           <div class="col-lg-6">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Ghi chú </label>
+                                  <label for="" class="control-label text-left">{{__('messages.Note') }} </label>
                                   <input 
                                       type="text"
                                       name="description"
@@ -65,7 +69,7 @@
       </div>
       <hr>
       <div class="text-right mb15">
-          <button class="btn btn-primary" type="submit" name="send" value="send">Lưu lại</button>
+          <button class="btn btn-primary" type="submit" name="send" value="send">{{__('messages.save') }}</button>
       </div>
   </div>
 </form>

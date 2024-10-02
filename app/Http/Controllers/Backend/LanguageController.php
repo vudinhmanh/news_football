@@ -29,7 +29,7 @@ class LanguageController extends Controller
                 '/Admin/css/plugins/switchery/switchery.css'
             ]
         ];
-        $config['seo'] = config('apps.language');
+        $config['seo'] = __('messages.language');
         $template = 'backend.language.index';
         return view(
             'backend.dashboard.layout',
@@ -43,7 +43,7 @@ class LanguageController extends Controller
     public function create()
     {
         $config = $this->configData();
-        $config['seo'] = config('apps.language');
+        $config['seo'] = __('messages.language');
         $config['method'] = 'create';
         $template = 'backend.language.store';
         return view('backend.dashboard.layout',
@@ -62,7 +62,7 @@ class LanguageController extends Controller
     public function edit($id){
         $language = $this->languageRepository->findById($id);
         $config = $this->configData();
-        $config['seo'] = config('apps.language');
+        $config['seo'] = __('messages.language');
         $config['method'] = 'edit'; 
         $template = 'backend.language.store';
         return view('backend.dashboard.layout',
@@ -82,7 +82,7 @@ class LanguageController extends Controller
     public function delete($id){
         $language = $this->languageRepository->findById($id);
         $template = 'backend.language.delete';
-        $config['seo'] = config('apps.language');
+        $config['seo'] = __('messages.language');
         return view('backend.dashboard.layout',
             compact(
                 'template',

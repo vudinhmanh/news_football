@@ -19,9 +19,8 @@
                       <p class="text-2xl text-red-500">
                         {{__('messages.generalDescription') }} 
                         {{ $postCatalogue->name }}
-                    </p>
-                    <p class="font-bold">{{__('messages.generalWarning')}}
-
+                    <p class="font-bold">
+                        {{__('messages.generalWarning')}}
                     </p>
                   </div>
               </div>
@@ -51,7 +50,6 @@
                                       type="text"
                                       name="canonical"
                                       value="{{ old('canonical', isset($postCatalogue->canonical) ? config('app.url').$postCatalogue->canonical.config('app.general.suffix') : '') }}"
-
                                       class="form-control"
                                       placeholder=""
                                       autocomplete="off"
@@ -67,7 +65,9 @@
       <hr>
       <div class="text-center items-center">
         
-          <button class="btn btn-danger" type="submit" name="send" value="send">{{__('messages.save') }} </button>
+          <button class="btn btn-danger" type="submit" name="send" value="send">
+            {{__('messages.delete') }} 
+        </button>
           <a href="{{ route('post.catalogue.index') }}" class="btn btn-primary">
             {{__('messages.cancel') }}
           </a>

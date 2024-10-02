@@ -7,8 +7,11 @@
           <div class="col-lg-5">
               <div class="panel-head">
                   <div class="">
-                      <p class="text-2xl text-red-500">Bạn muốn xoá thành viên có email là: {{ $user->email }}</p>
-                      <p class="font-semibold">Lưu ý: Những thông tin sau khi xoá không thể khôi phục </p>
+                      <p class="text-2xl text-red-500">
+                        {{__('messages.user.delete.confirmDelete') }} 
+                        {{ $user->email }}
+                      </p>
+                      <p class="font-bold">{{__('messages.generalWarning')}}</p>
                   </div>
               </div>
           </div>
@@ -18,7 +21,10 @@
                       <div class="row mb15">
                           <div class="col-lg-6">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Email <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">
+                                    {{__('messages.user.userEmail') }} 
+                                    <span class="text-danger">(*)</span>
+                                  </label>
                                   <input 
                                       type="text"
                                       name="email"
@@ -32,7 +38,10 @@
                           </div>
                           <div class="col-lg-6">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Họ Tên <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">
+                                    {{__('messages.user.userRole') }} 
+                                    <span class="text-danger">(*)</span>
+                                  </label>
                                   <input 
                                       type="text"
                                       name="name"
@@ -51,9 +60,11 @@
       </div>
       <hr>
       <div class="text-center items-center">
-          <button class="btn btn-danger" type="submit" name="send" value="send">Xoá</button>
+          <button class="btn btn-danger" type="submit" name="send" value="send">
+            {{__('messages.delete') }}
+        </button>
           <a href="{{ route('user.index') }}" class="btn btn-primary">
-            Huỷ
+            {{__('messages.cancel') }}
           </a>
 
       </div>

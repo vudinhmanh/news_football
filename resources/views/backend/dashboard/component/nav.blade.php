@@ -21,7 +21,7 @@
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <div class="flex items-center justify-center w-[200px]">
-                    @foreach ($language as $key => $val)
+                    @foreach ($language->filter(fn($val) => $val->publish == 2) as $key => $val)
                         <a href="{{ route('language.switch', $val->id) }}" class="flex items-center justify-center object-cover h-[65px] {{ $val->current == 1 ? 'bg-slate-400' : '' }}">
                             <img src="{{ $val->image }}" alt="" class="h-full">
                         </a>

@@ -22,7 +22,7 @@
           <div class="col-lg-8">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>{{__('postCatalogue.index.title') }}</h5>
+                    <h5>{{__('messages.postCatalogue.index.title') }}</h5>
                     
                 </div>
                 <div class="ibox-content">

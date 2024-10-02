@@ -59,7 +59,7 @@ class PostController extends Controller
     public function create()
     {
         $config = $this->configData();
-        $config['seo'] = config('apps.post');
+        $config['seo'] = __('messages.post');
         $config['method'] = 'create';
         $dropdown = $this->netedset->Dropdown();
         $template = 'backend.post.post.store';
@@ -84,7 +84,7 @@ class PostController extends Controller
         );
         // dd($post);
         $config = $this->configData();
-        $config['seo'] = config('apps.post');
+        $config['seo'] = __('messages.post');
         $config['method'] = 'edit'; 
         $dropdown = $this->netedset->Dropdown();
         $catalogue = $this->catalogue($post);
@@ -107,7 +107,7 @@ class PostController extends Controller
     public function delete($id){
         $post = $this->postRepository->getpostById($id, $this->language);
         $template = 'backend.post.post.delete';
-        $config['seo'] = config('apps.post');
+        $config['seo'] = __('messages.post');
         return view('backend.dashboard.layout',
             compact(
                 'template',

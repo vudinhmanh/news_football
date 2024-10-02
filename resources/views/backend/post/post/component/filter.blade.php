@@ -33,7 +33,7 @@
           name="keyword" 
           value="{{ request('keyword') ?: old('keyword') }}" 
           placeholder="{{ __('messages.searchInput') }}" 
-          class="form-control rounded-lg border border-gray-300 px-2 py-1"
+          class="form-control rounded-lg border border-gray-300 px-6 py-1"
         >
         <button type="submit" name="search" value="search" class="btn btn-primary btn-sm !mb-0">
           {{ __('messages.search') }}

@@ -21,10 +21,14 @@
       <div class="row">
           <div class="col-lg-5">
               <div class="panel-head">
-                  <div class="font-extrabold">Thông tin chung</div>
+                <div class="font-extrabold">{{__('messages.generalTitle') }}</div>
                   <div class="panel-description">
-                      <p>Nhập thông tin chung của ngôn ngữ</p>
-                      <p>Lưu ý: Những trường đánh dấu <span class="text-danger">(*)</span> là bắt buộc</p>
+                    <p>{{__('messages.language.commonLang') }}</p>
+                    <p>
+                        {{__('messages.generalRequiredField') }}
+                        <span class="text-danger">(*)</span> 
+                        {{__('messages.isRequired') }}
+                      </p>
                   </div>
               </div>
           </div>
@@ -34,7 +38,10 @@
                       <div class="row mb15">
                           <div class="col-lg-6">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Tên ngôn ngữ <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">
+                                    {{__('messages.language.languageName') }}
+                                    <span class="text-danger">(*)</span>
+                                  </label>
                                   <input 
                                       type="text"
                                       name="name"
@@ -47,7 +54,10 @@
                           </div>
                           <div class="col-lg-6">
                               <div class="form-row">
-                                  <label for="" class="control-label text-left">Từ khoá <span class="text-danger">(*)</span></label>
+                                  <label for="" class="control-label text-left">
+                                    {{__('messages.language.keyword') }}
+                                    <span class="text-danger">(*)</span>
+                                  </label>
                                   <input 
                                       type="text"
                                       name="canonical"
@@ -60,22 +70,29 @@
                           </div>
                           <div class="col-lg-6">
                             <div class="form-row">
-                                <label for="" class="control-label text-left ">Ảnh đại diện</label>
+                                <label for="" class="control-label text-left ">
+                                    {{__('messages.language.image') }}
+                                </label>
                                 <input 
                                     type="text"
                                     name="image"
-                                    value="{{ old('image', ($language->image) ?? '' ) }}"
-                                    class="form-control upload-image"
+                                    value="{{__('messages.language.selectImage') }}"
+                                    class="upload-image p-2 m-2 bg-gray-300 rounded-lg cursor-pointer outline-none"
                                     placeholder=""
                                     autocomplete="off"
                                     data-type="Images"
                                     readonly
                                 >
+                                <div>
+                                    <img src="{{ old('image', ($language->image) ?? '' ) }}" alt="">
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-row">
-                                <label for="" class="control-label text-left">Ghi chú</label>
+                                <label for="" class="control-label text-left">
+                                    {{__('messages.Note') }}
+                                </label>
                                 <input 
                                     type="text"
                                     name="description"
@@ -93,7 +110,9 @@
       </div>
       <hr>
       <div class="text-right mb15">
-          <button class="btn btn-primary" type="submit" name="send" value="send">Lưu lại</button>
+          <button class="btn btn-primary" type="submit" name="send" value="send">
+            {{__('messages.save') }}
+        </button>
       </div>
   </div>
 </form>

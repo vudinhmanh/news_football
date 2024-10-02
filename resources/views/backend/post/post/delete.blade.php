@@ -69,7 +69,6 @@
           <a href="{{ route('post.index') }}" class="btn btn-primary">
             Huỷ
           </a>
-
       </div>
   </div>
 </form>

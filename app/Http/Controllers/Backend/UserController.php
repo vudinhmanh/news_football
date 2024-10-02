@@ -32,7 +32,7 @@ class UserController extends Controller
                 '/Admin/css/plugins/switchery/switchery.css'
             ]
         ];
-        $config['seo'] = config('apps.user');
+        $config['seo'] = __('messages.user');
         $template = 'backend.user.user.index';
         return view(
             'backend.dashboard.layout',
@@ -47,7 +47,7 @@ class UserController extends Controller
     {   
         $provinces = $this->provideRepository->all();
         $config = $this->configData();
-        $config['seo'] = config('apps.user');
+        $config['seo'] = __('messages.user');
         $config['method'] = 'create';
         $template = 'backend.user.user.store';
         return view('backend.dashboard.layout',
@@ -69,7 +69,7 @@ class UserController extends Controller
         // dd($user);
         $provinces = $this->provideRepository->all();
         $config = $this->configData();
-        $config['seo'] = config('apps.user');
+        $config['seo'] = __('messages.user');
         $config['method'] = 'edit';
         $template = 'backend.user.user.store';
         return view('backend.dashboard.layout',
@@ -90,7 +90,7 @@ class UserController extends Controller
     public function delete($id){
         $user = $this->userRepository->findById($id);
         $template = 'backend.user.user.delete';
-        $config['seo'] = config('apps.user');
+        $config['seo'] = __('messages.user');
         $config['method'] = 'delete';
         return view('backend.dashboard.layout',
             compact(

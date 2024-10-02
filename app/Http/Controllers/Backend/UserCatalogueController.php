@@ -29,7 +29,7 @@ class UserCatalogueController extends Controller
                 '/Admin/css/plugins/switchery/switchery.css'
             ]
         ];
-        $config['seo'] = config('apps.usercatalogue');
+        $config['seo'] = __('messages.userCatalogue');
         $template = 'backend.user.catalogue.index';
         return view(
             'backend.dashboard.layout',
@@ -42,7 +42,7 @@ class UserCatalogueController extends Controller
     }
     public function create()
     {
-        $config['seo'] = config('apps.usercatalogue');
+        $config['seo'] = __('messages.userCatalogue');
         $config['method'] = 'create';
         $template = 'backend.user.catalogue.store';
         return view('backend.dashboard.layout',
@@ -60,7 +60,7 @@ class UserCatalogueController extends Controller
     }
     public function edit($id){
         $userCatalogue = $this->userCatalogueRepository->findById($id);
-        $config['seo'] = config('apps.usercatalogue');
+        $config['seo'] = __('messages.userCatalogue');
         $config['method'] = 'edit';
         $template = 'backend.user.catalogue.store';
         return view('backend.dashboard.layout',
@@ -80,7 +80,7 @@ class UserCatalogueController extends Controller
     public function delete($id){
         $userCatalogue = $this->userCatalogueRepository->findById($id);
         $template = 'backend.user.catalogue.delete';
-        $config['seo'] = config('apps.usercatalogue');
+        $config['seo'] = __('messages.userCatalogue');
         return view('backend.dashboard.layout',
             compact(
                 'template',

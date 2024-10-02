@@ -4,11 +4,11 @@
       <th>
           <input type="checkbox" value="" id="checkAll" class="input-checkbox">
       </th>
-      <th>Ảnh</th>
-      <th>Tên ngôn ngữ</th>
-      <th>Từ khoá</th>
-      <th class="text-center">Tình Trạng</th>
-      <th class="text-center">Thao tác</th>
+      <th>{{__('messages.language.image') }}</th>
+      <th>{{__('messages.language.languageName') }}</th>
+      <th>{{__('messages.language.keyword') }}</th>
+      <th class="text-center">{{__('messages.tableStatus') }}</th>
+      <th class="text-center">{{__('messages.tableAction') }}</th>
   </tr> 
   </thead>
   <tbody>

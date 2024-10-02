@@ -122,11 +122,54 @@ return [
             'title' => 'Cập nhật nhóm thành viên'
         ],
         'delete' => [
-            'title' => 'Xóa nhóm thành viên'
+            'title' => 'Xóa nhóm thành viên',
+            'confirmDelete' => 'Bạn muốn xoá nhóm thành viên có tên là:'
         ],
         'permission' => [
             'title' => 'Cập nhật quyền'
         ],
+        'userCatalogueName' => 'Tên nhóm thành viên',
+        'userCatalogueDes' => 'Mô tả',
+        'userCatalogueQuantity' => 'Số thành viên',
+        'commonInfor' => 'Nhập thông tin chung cho nhóm thành viên',
+    ],
+    'user' => [
+        'index' => [
+            'title' => 'Quản lý thành viên',
+            'table' => 'Danh sách thành viên'
+        ],
+        'create' => [
+            'title' => 'Thêm mới thành viên'
+        ],
+        'edit' => [
+            'title' => 'Cập nhật thành viên'
+        ],
+        'delete' => [
+            'title' => 'Xóa thành viên',
+            'confirmDelete' => 'Bạn muốn xoá thành viên có tên là:'
+        ],
+        'permission' => [
+            'title' => 'Cập nhật quyền'
+        ],
+        'userName' => 'Họ tên',
+        'userEmail' => 'Email',
+        'userPhone' => 'Số điện thoại',
+        'userCatalogue' => 'Nhóm thành viên',
+        'dateOfBirth' => 'Ngày sinh',
+        'password' => 'Mật khẩu',
+        'confirmPassword' => 'Nhập lại mật khẩu',
+        'avatar' => 'Ảnh đại diện',
+        'contactInfor' => 'Thông tin liên hệ',
+        'fillContactInfor' => 'Nhập thông tin liên hệ của người sử dụng',
+        'city' => 'Thành phố',
+        'chooseCity' => '[Chọn thành phố]',
+        'district' => 'Quận/Huyện',
+        'chooseDistrict' => '[Chọn Quận/Huyện]',
+        'ward' => 'Phường/Xã',
+        'chooseAddress' => '[Chọn Phường/Xã]',
+        'address' => 'Địa chỉ',
+        'userRole' => 'Vai trò',
+        'commonInfor' => 'Nhập thông tin chung của người sử dụng',
         
     ],
     'permission' => [
@@ -144,6 +187,24 @@ return [
             'title' => 'Xóa Quyền'
         ],
         
+    ],
+    'language' => [
+        'index' => [
+            'title' => 'Quản lý ngôn ngữ',
+            'table' => 'Danh sách ngôn ngữ',
+        ],
+        'edit' => [
+            'title' => 'Cập nhập ngôn ngữ',
+        ],
+        'delete' => [
+            'title' => 'Xoá ngôn ngữ',
+            'confirmDelete' => 'Bạn muốn xoá ngôn ngữ:',
+        ],
+        'image' => 'Ảnh',
+        'selectImage' => 'Chọn ảnh',
+        'languageName' => 'Tên ngôn ngữ',
+        'keyword' => 'Từ khoá',
+        'commonLang' => 'Nhập thông tin chung của ngôn ngữ',
     ],
     'generate' => [
         'index' => [
@@ -192,6 +253,7 @@ return [
     'deleteButton' => 'Xóa dữ liệu',
     'tableHeading' => 'Thông tin chung',
     'save' => 'Lưu lại',
+    'delete' => 'Xoá',
     'cancel' => 'Huỷ',
     'publish' => [
         '0' => 'Chọn tình trạng',
@@ -201,15 +263,20 @@ return [
     'follow' => [
         '1' => 'Follow',
         '2' => 'Nofollow',
-        
     ],
     'album' => [
         'heading' => 'Album Ảnh',
         'image' => 'Chọn Hình',
         'notice' => 'Sử dụng nút chọn hình hoặc click vào đây để thêm hình ảnh'
     ],
+    'userCatalogueRule' => [
+        '0' => 'Chọn nhóm thành viên',
+        '1' => 'Quản trị viên',
+        '2' => 'Cộng tác viên'
+    ],
     'generalTitle' => 'Thông tin chung',
-    'generalDescription' => 'Bạn đang muốn xóa bài viết có tên là:',
     'generalWarning' => 'Lưu ý: Không thể khôi phục dữ liệu sau khi xóa. Hãy chắc chắn bạn muốn thực hiện chức năng này',
-   
+    'generalRequiredField' => 'Lưu ý: Những trường đánh dấu',
+    'isRequired' => 'là bắt buộc',
+    'Note' => 'Ghi chú'
 ];
