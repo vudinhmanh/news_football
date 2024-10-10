@@ -4,21 +4,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\UserCatalogueServiceInterface  as UserCatalogueService;
 use App\Repositories\Interfaces\UserCatalogueRepositoryInterface  as UserCatalogueRepository;
+use App\Repositories\Interfaces\PermissionRepositoryInterface  as PermissionRepository;
 use App\Http\Requests\StoreUserCatalogueRequest;
 
 class UserCatalogueController extends Controller
 {
     protected $userCatalogueService;
     protected $userCatalogueRepository;
+    protected $permissionRepository;
     public function __construct(
         UserCatalogueService $userCatalogueService,
         UserCatalogueRepository $userCatalogueRepository,
+        PermissionRepository $permissionRepository,
     ){
         $this->userCatalogueService = $userCatalogueService;
         $this->userCatalogueRepository = $userCatalogueRepository;
+        $this->permissionRepository = $permissionRepository;
     }
     public function index(Request $request)
     {
+        $this->authorize('modules', 'user.catalogue.index');
         $userCatalogues = $this->userCatalogueService->paginate($request);
         $config = [
             'js' => [
@@ -42,6 +47,7 @@ class UserCatalogueController extends Controller
     }
     public function create()
     {
+        $this->authorize('modules', 'user.catalogue.create');
         $config['seo'] = __('messages.userCatalogue');
         $config['method'] = 'create';
         $template = 'backend.user.catalogue.store';
@@ -59,6 +65,7 @@ class UserCatalogueController extends Controller
         return redirect()->route('user.catalogue.index')->with('error', "Thêm nhóm thành viên thất bại");    
     }
     public function edit($id){
+        $this->authorize('modules', 'user.catalogue.update');
         $userCatalogue = $this->userCatalogueRepository->findById($id);
         $config['seo'] = __('messages.userCatalogue');
         $config['method'] = 'edit';
@@ -78,6 +85,7 @@ class UserCatalogueController extends Controller
         return redirect()->route('user.catalogue.index')->with('error', "Sửa thất bại");    
     }
     public function delete($id){
+        $this->authorize('modules', 'user.catalogue.destroy');
         $userCatalogue = $this->userCatalogueRepository->findById($id);
         $template = 'backend.user.catalogue.delete';
         $config['seo'] = __('messages.userCatalogue');
@@ -94,5 +102,37 @@ class UserCatalogueController extends Controller
             return redirect()->route('user.catalogue.index')->with('success', "Xoá thành công");    
         }
         return redirect()->route('user.catalogue.index')->with('error', "Xoá thất bại");    
+    }
+    public function permission(){
+        // $this->authorize('modules', 'user.catalogue.permission');
+        // $userCatalogues = $this->userCatalogueRepository->all(['permissions']);
+        // $permissions = $this->permissionRepository->all();
+        // $config['seo'] = __('messages.userCatalogue');
+        // $template = 'backend.user.catalogue.permission';
+        // return view('backend.dashboard.layout', compact(
+        //     'template',
+        //     'userCatalogues',
+        //     'permissions',
+        //     'config',
+        // ));
+        $userCatalogues = $this->userCatalogueRepository->all(['permissions']);
+        $permissions = $this->permissionRepository->all();
+        $config['seo'] = __('messages.userCatalogue');
+        $template = 'backend.user.catalogue.permission';
+        return view('backend.dashboard.layout',
+            compact(
+                'template',
+                'config',
+                'userCatalogues',
+                'permissions'
+            )
+        );
+    }
+
+    public function updatePermission(Request $request){
+        if($this->userCatalogueService->setPermission($request)){
+            return redirect()->route('user.catalogue.index')->with('success','Cập nhật quyền thành công');
+        }
+        return redirect()->route('user.catalogue.index')->with('error','Có vấn đề xảy ra, Hãy thử lại');
     }
 }

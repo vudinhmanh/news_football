@@ -31,6 +31,7 @@ class PostController extends Controller
     }
     public function index(Request $request)
     {
+        $this->authorize('modules', 'post.index');
         $posts = $this->postService->paginate($request);
         $config = [
             'js' => [
@@ -58,6 +59,7 @@ class PostController extends Controller
     }
     public function create()
     {
+        $this->authorize('modules', 'post.create');
         $config = $this->configData();
         $config['seo'] = __('messages.post');
         $config['method'] = 'create';
@@ -78,6 +80,7 @@ class PostController extends Controller
         return redirect()->route('post.index')->with('error', "Thêm ngữ thất bại");    
     }
     public function edit($id){
+        $this->authorize('modules', 'post.update');
         $post = $this->postRepository->getpostById(
             $id, 
             $this->language
@@ -105,6 +108,7 @@ class PostController extends Controller
         return redirect()->route('post.index')->with('error', "Sửa thất bại");    
     }
     public function delete($id){
+        $this->authorize('modules', 'post.destroy');
         $post = $this->postRepository->getpostById($id, $this->language);
         $template = 'backend.post.post.delete';
         $config['seo'] = __('messages.post');

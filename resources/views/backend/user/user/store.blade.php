@@ -145,25 +145,6 @@
                           </div>
                       </div>
                       @endif
-                      <div class="row mb-[15px]">
-                          <div class="col-lg-12">
-                              <div class="form-row">
-                                  <label for="" class="control-label text-left">
-                                    {{__('messages.user.avatar') }}  
-                                  </label>
-                                  <input 
-                                      type="text"
-                                      name="image"
-                                      value="{{ old('image', ($user->image) ?? '') }}"
-                                      class="form-control upload-image"
-                                      placeholder=""
-                                      autocomplete="off"
-                                      data-upload="Images"
-                                      readonly
-                                  >
-                              </div>
-                          </div>
-                      </div>
                   </div>
               </div>
           </div>

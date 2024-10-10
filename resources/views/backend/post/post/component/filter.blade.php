@@ -41,7 +41,7 @@
       </div>
       <!-- Nút Thêm mới -->
       <a href="{{ route('post.create') }}" class="btn btn-danger flex items-center px-4 py-2 rounded-lg text-white !mb-0">
-        <i class="fa fa-plus mr-2"></i> {{ __('messages.postCatalogue.create.title') }}
+        <i class="fa fa-plus mr-2"></i> {{ __('messages.post.create.title') }}
       </a>
     </div>
   </div>

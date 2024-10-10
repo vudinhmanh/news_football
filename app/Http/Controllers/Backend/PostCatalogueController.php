@@ -31,6 +31,7 @@ class PostCatalogueController extends Controller
     }
     public function index(Request $request)
     {
+        $this->authorize('modules', 'post.catalogue.index');
         $postCatalogues = $this->postCatalogueService->paginate($request);
         $config = [
             'js' => [
@@ -54,6 +55,7 @@ class PostCatalogueController extends Controller
     }
     public function create()
     {
+        $this->authorize('modules', 'post.catalogue.create');
         $config = $this->configData();
         $config['seo'] = __('messages.postCatalogue');
         $config['method'] = 'create';
@@ -74,6 +76,7 @@ class PostCatalogueController extends Controller
         return redirect()->route('post.catalogue.index')->with('error', "Thêm ngữ thất bại");    
     }
     public function edit($id){
+        $this->authorize('modules', 'post.catalogue.update');
         $postCatalogue = $this->postCatalogueRepository->getPostCatalogueById(
             $id, 
             $this->language
@@ -99,6 +102,7 @@ class PostCatalogueController extends Controller
         return redirect()->route('post.catalogue.index')->with('error', "Sửa thất bại");    
     }
     public function delete($id){
+        $this->authorize('modules', 'post.catalogue.destroy');
         $postCatalogue = $this->postCatalogueRepository->getPostCatalogueById($id, $this->language);
         $template = 'backend.post.catalogue.delete';
         $config['seo'] = __('messages.postCatalogue');

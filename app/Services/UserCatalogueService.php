@@ -104,44 +104,65 @@ class UserCatalogueService implements UserCatalogueServiceInterface
         echo $e->getMessage();die();
         return false;
     }
-}
-
-public function updateStatusAll($post){
-  DB::beginTransaction();
-  try{
-      $payload[$post['field']] = $post['value'];
-      $flag = $this->userCatalogueRepository->updateByWhereIn('id', $post['id'], $payload);
-      $this->changeUserStatus($post, $post['value']);
-
-      DB::commit();
-      return true;
-  }catch(\Exception $e ){
-      DB::rollBack();
-      // Log::error($e->getMessage());
-      echo $e->getMessage();die();
-      return false;
   }
-}
-private function changeUserStatus($post, $value){
-  DB::beginTransaction();
-  try{
-      $array = [];
-      if(isset($post['modelId'])){
-          $array[] = $post['modelId'];
-      }else{
-          $array = $post['id'];
-      }
-      $payload[$post['field']] = $value;
-      $this->userRepository->updateByWhereIn('user_catalogue_id', $array, $payload);
-      DB::commit();
-      return true;
-  }catch(\Exception $e ){
-      DB::rollBack();
-      // Log::error($e->getMessage());
-      echo $e->getMessage();die();
-      return false;
+
+  public function updateStatusAll($post){
+    DB::beginTransaction();
+    try{
+        $payload[$post['field']] = $post['value'];
+        $flag = $this->userCatalogueRepository->updateByWhereIn('id', $post['id'], $payload);
+        $this->changeUserStatus($post, $post['value']);
+
+        DB::commit();
+        return true;
+    }catch(\Exception $e ){
+        DB::rollBack();
+        // Log::error($e->getMessage());
+        echo $e->getMessage();die();
+        return false;
+    }
   }
-}
+  private function changeUserStatus($post, $value){
+    DB::beginTransaction();
+    try{
+        $array = [];
+        if(isset($post['modelId'])){
+            $array[] = $post['modelId'];
+        }else{
+            $array = $post['id'];
+        }
+        $payload[$post['field']] = $value;
+        $this->userRepository->updateByWhereIn('user_catalogue_id', $array, $payload);
+        DB::commit();
+        return true;
+    }catch(\Exception $e ){
+        DB::rollBack();
+        // Log::error($e->getMessage());
+        echo $e->getMessage();die();
+        return false;
+    }
+  }
+  public function setPermission($request){
+    //Đưa dữ liệu vào bảng user_catalogue_permission
+    DB::beginTransaction();
+    try{
+        $permissions = $request->input('permission');
+        if(count($permissions)){
+          foreach($permissions as $key => $val){
+            $userCatalogue = $this->userCatalogueRepository->findById($key);
+            $userCatalogue->permissions()->detach();
+            $userCatalogue->permissions()->sync($val);
+          }
+        }
+        DB::commit();
+        return true;
+    }catch(\Exception $e ){
+        DB::rollBack();
+        // Log::error($e->getMessage());
+        echo $e->getMessage();die();
+        return false;
+    }
+  }
   private function paginateSelect(){
     return [
       'id', 

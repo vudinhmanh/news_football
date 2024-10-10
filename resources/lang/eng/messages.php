@@ -103,8 +103,12 @@ return [
             'title' => 'Update Permission'
         ],
         'delete' => [
-            'title' => 'Delete Permission'
+            'title' => 'Delete Permission',
+            'confirmDelete' => 'Do you want to remove permissions:'
         ],   
+        'permissionTitle' => 'Title',
+        'permissionKeyword' => 'Keyword',
+        'Authorization' => 'Authorization'
     ],
     'language' => [
         'index' => [
@@ -183,4 +187,5 @@ return [
     'generalRequiredField' => 'Note: Fields marked',
     'isRequired' => 'are required',
     'Note' => 'Note',
+    'Dashboard' => 'Dashboard'
 ];

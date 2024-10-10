@@ -19,7 +19,7 @@ return [
         [
             'title' => 'User Group',
             'icon' => 'fa fa-user',
-            'name' => ['user'],
+            'name' => ['user', 'permission'],
             'subModule' => [
                 [
                     'title' => 'User Group',

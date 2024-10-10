@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\Interfaces\LanguageServiceInterface  as LanguageService;
-use App\Repositories\Interfaces\LanguageRepositoryInterface  as LanguageRepository;
+use App\Services\Interfaces\LanguageServiceInterface as LanguageService;
+use App\Repositories\Interfaces\LanguageRepositoryInterface as LanguageRepository;
 use App\Http\Requests\StoreLanguageRequest;
 use App\Http\Requests\UpdateLanguageRequest;
 class LanguageController extends Controller
@@ -13,7 +13,7 @@ class LanguageController extends Controller
     public function __construct(
         LanguageService $languageCatalogueService,
         LanguageRepository $languageCatalogueRepository,
-    ){
+    ) {
         $this->languageService = $languageCatalogueService;
         $this->languageRepository = $languageCatalogueRepository;
     }
@@ -46,26 +46,30 @@ class LanguageController extends Controller
         $config['seo'] = __('messages.language');
         $config['method'] = 'create';
         $template = 'backend.language.store';
-        return view('backend.dashboard.layout',
+        return view(
+            'backend.dashboard.layout',
             compact(
                 'template',
                 'config',
             )
         );
     }
-    public function store(StoreLanguageRequest $request){
-        if($this->languageService->create($request)){
-            return redirect()->route('language.index')->with('success', "Thêm ngôn ngữ thành công");    
+    public function store(StoreLanguageRequest $request)
+    {
+        if ($this->languageService->create($request)) {
+            return redirect()->route('language.index')->with('success', "Thêm ngôn ngữ thành công");
         }
-        return redirect()->route('language.index')->with('error', "Thêm ngôn ngữ thất bại");    
+        return redirect()->route('language.index')->with('error', "Thêm ngôn ngữ thất bại");
     }
-    public function edit($id){
+    public function edit($id)
+    {
         $language = $this->languageRepository->findById($id);
         $config = $this->configData();
         $config['seo'] = __('messages.language');
-        $config['method'] = 'edit'; 
+        $config['method'] = 'edit';
         $template = 'backend.language.store';
-        return view('backend.dashboard.layout',
+        return view(
+            'backend.dashboard.layout',
             compact(
                 'template',
                 'config',
@@ -73,17 +77,20 @@ class LanguageController extends Controller
             )
         );
     }
-    public function update($id, UpdateLanguageRequest $request){
-        if($this->languageService->update($id, $request)){
-            return redirect()->route('language.index')->with('success', "Sửa thành công");    
+    public function update($id, UpdateLanguageRequest $request)
+    {
+        if ($this->languageService->update($id, $request)) {
+            return redirect()->route('language.index')->with('success', "Sửa thành công");
         }
-        return redirect()->route('language.index')->with('error', "Sửa thất bại");    
+        return redirect()->route('language.index')->with('error', "Sửa thất bại");
     }
-    public function delete($id){
+    public function delete($id)
+    {
         $language = $this->languageRepository->findById($id);
         $template = 'backend.language.delete';
         $config['seo'] = __('messages.language');
-        return view('backend.dashboard.layout',
+        return view(
+            'backend.dashboard.layout',
             compact(
                 'template',
                 'language',
@@ -91,26 +98,29 @@ class LanguageController extends Controller
             )
         );
     }
-    public function destroy($id) {
-        if($this->languageService->destroy($id)){
-            return redirect()->route('language.index')->with('success', "Xoá thành công");    
+    public function destroy($id)
+    {
+        if ($this->languageService->destroy($id)) {
+            return redirect()->route('language.index')->with('success', "Xoá thành công");
         }
-        return redirect()->route('language.index')->with('error', "Xoá thất bại");    
+        return redirect()->route('language.index')->with('error', "Xoá thất bại");
     }
-    private function configData(){
+    private function configData()
+    {
         return [
-                'js' => [
-                    '/Admin/plugins/ckfinder_2/ckfinder.js',
-                    '/Admin/library/finder.js'
-                ]
-            ];
+            'js' => [
+                '/Admin/plugins/ckfinder_2/ckfinder.js',
+                '/Admin/library/finder.js'
+            ]
+        ];
     }
-    public function switchBackendLanguage($id){
+    public function switchBackendLanguage($id)
+    {
         $language = $this->languageRepository->findById($id);
-        if($this->languageService->switch($id)){
+        if ($this->languageService->switch($id)) {
             session(['app_locale' => $language->canonical]);
             \App::setLocale($language->canonical);
         }
-        return redirect()->back(); 
+        return redirect()->back();
     }
 }

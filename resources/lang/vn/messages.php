@@ -82,7 +82,7 @@ return [
     ],
     'postCatalogue' => [
         'index' => [
-            'title' => 'Quản lý bài viết',
+            'title' => 'Quản lý nhóm bài viết',
             'table' => 'Danh sách nhóm bài viết'
         ],
         'create' => [
@@ -184,9 +184,12 @@ return [
             'title' => 'Cập nhật Quyền'
         ],
         'delete' => [
-            'title' => 'Xóa Quyền'
+            'title' => 'Xóa Quyền',
+            'confirmDelete' => 'Bạn có muốn xoá quyền:'
         ],
-        
+        'permissionTitle' => 'Tiêu đề',
+        'permissionKeyword' => 'Từ khoá',
+        'Authorization' => 'Cấp quyền'
     ],
     'language' => [
         'index' => [
@@ -278,5 +281,6 @@ return [
     'generalWarning' => 'Lưu ý: Không thể khôi phục dữ liệu sau khi xóa. Hãy chắc chắn bạn muốn thực hiện chức năng này',
     'generalRequiredField' => 'Lưu ý: Những trường đánh dấu',
     'isRequired' => 'là bắt buộc',
-    'Note' => 'Ghi chú'
+    'Note' => 'Ghi chú',
+    'Dashboard' => 'Dashboard'
 ];

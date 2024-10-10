@@ -22,6 +22,7 @@ class UserController extends Controller
     }
     public function index(Request $request)
     {
+        $this->authorize('modules', 'user.index');
         $users = $this->userService->paginate($request);
         $config = [
             'js' => [
@@ -45,6 +46,7 @@ class UserController extends Controller
     }
     public function create()
     {   
+        $this->authorize('modules', 'user.create');
         $provinces = $this->provideRepository->all();
         $config = $this->configData();
         $config['seo'] = __('messages.user');
@@ -65,6 +67,7 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('error', "Thêm nhân viên thất bại");    
     }
     public function edit($id){
+        $this->authorize('modules', 'user.update');
         $user = $this->userRepository->findById($id);
         // dd($user);
         $provinces = $this->provideRepository->all();
@@ -88,6 +91,7 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('error', "Sửa thất bại");    
     }
     public function delete($id){
+        $this->authorize('modules', 'user.destroy');
         $user = $this->userRepository->findById($id);
         $template = 'backend.user.user.delete';
         $config['seo'] = __('messages.user');

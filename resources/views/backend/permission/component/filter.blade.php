@@ -1,4 +1,4 @@
-<form action="{{ route('user.catalogue.index') }}">
+<form action="{{ route('permission.index') }}">
   <div class="flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0 mb-4">
     @php
       $perpage = request('perpage') ?: old('perpage');
@@ -6,8 +6,8 @@
     <!-- Phần chọn số bản ghi -->
     <div class="flex items-center">
       <select name="perpage" class="px-4 py-2 rounded-none border outline-none border-gray-300 ">
-        @for($i = 10; $i <= 50; $i+=5)
-          <option {{ ($perpage == $i) ? 'selected' : '' }} value="{{ $i }}">{{ $i }} {{__('messages.perpage')}}</option>
+        @for($i = 10; $i <= 50; $i+=10)
+        <option {{ ($perpage == $i) ? 'selected' : '' }} value="{{ $i }}">{{ $i }} {{ __('messages.perpage') }}</option>
         @endfor
       </select>
     </div>
@@ -26,15 +26,11 @@
         </button>
       </div>
   
-      <div class="flex gap-x-5">
-        <a href="{{ route('user.catalogue.permission') }}" class="btn btn-warning flex items-center px-4 py-2 rounded-lg text-white !mb-0">
-          <i class="fa fa-key mr-2"></i> {{ __('messages.permission.edit.title') }}
-        </a>
-        <a href="{{ route('user.catalogue.create') }}" class="btn btn-danger flex items-center px-4 py-2 rounded-lg text-white !mb-0">
-          <i class="fa fa-plus mr-2"></i> {{ __('messages.userCatalogue.create.title') }}
-        </a>
-      </div>
-      
+      <!-- Nút Thêm mới thành viên -->
+      <a href="{{ route('permission.create') }}" class="btn btn-danger flex items-center px-4 py-2 rounded-lg text-white !mb-0">
+        <i class="fa fa-plus mr-2"></i> 
+        {{ __('messages.permission.create.title') }}
+      </a>
     </div>
   </div>
   
