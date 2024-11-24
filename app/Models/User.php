@@ -64,4 +64,18 @@ class User extends Authenticatable
     public function hasPermission($permissionCanonical){
         return $this->user_catalogues->permissions->contains('canonical', $permissionCanonical);
     }
+
+    public function saved_posts()
+    {
+        return $this->belongsToMany(Post::class, 'save_posts', 'user_id', 'post_id');
+    }
+
+    public function stringBirthday()
+    {
+        if (empty($this->birthday)) {
+            return '';
+        }
+
+        return date('Y-m-d', strtotime($this->birthday));
+    }
 }
