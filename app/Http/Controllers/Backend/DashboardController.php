@@ -2,24 +2,42 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\PostCatalogue;
 
 class DashboardController extends Controller
 {
     public function __construct()
     {
 
-    }    
+    }
     public function index() {
         $config = $this->config();
         // echo "da dang nhap";
         $template = 'backend.dashboard.home.index';
+        $total_posts = Post::count();
+        $total_comments = Comment::count();
+        $total_views = Post::sum('n_views');
+
+        $top_comment_posts = Post::orderBy('n_comments', 'desc')->limit(5)->get();
+        $top_view_posts = Post::orderBy('n_views', 'desc')->limit(5)->get();
+
+        $categories = PostCatalogue::get();
+
         return view("backend.dashboard.layout", compact(
             'template',
-            'config'
+            'config',
+            'total_posts',
+            'total_comments',
+            'total_views',
+            'top_comment_posts',
+            'top_view_posts',
+            'categories'
         ));
     }
     public function config() {
-        return 
+        return
         [
             'js' => [
                 '/Admin/js/plugins/flot/jquery.flot.js',

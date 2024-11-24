@@ -15,6 +15,7 @@ use App\Http\Middleware\Backend\LoginMiddleware;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Ajax\DashboardController as AjaxDashboardController;
 use App\Http\Controllers\Backend\LanguageController;
+use \App\Http\Controllers\Frontend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +28,21 @@ use App\Http\Controllers\Backend\LanguageController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('login', [HomeController::class, 'login'])->name('home.login');
+Route::get('logout', [HomeController::class, 'logout'])->name('home.logout')->middleware('user');
+Route::get('google/callback', [HomeController::class, 'googleCallback'])->name('home.google_callback');
+Route::get('categories/{id}', [HomeController::class, 'singleCategory'])->name('home.single_category');
+Route::get('news/{id}', [HomeController::class, 'singleNew'])->name('home.single_new');
+Route::post('comment', [HomeController::class, 'comment'])->name('home.comment')->middleware('user');
+Route::post('delete-comment/{id}', [HomeController::class, 'deleteComment'])->name('home.delete_comment')->middleware('user');
+Route::post('save_post', [HomeController::class, 'savePost'])->name('home.save_post')->middleware('user');
+Route::get('profile', [HomeController::class, 'profile'])->name('home.profile')->middleware('user');
+Route::post('profile', [HomeController::class, 'editProfile'])->name('home.edit_profile')->middleware('user');
 
 // ADMIN ROUTES
 Route::get('dashboard/index', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware('admin', 'locale');
-Route::get('admin/login', [AuthController::class, 'index'])->name('auth.login')->middleware(LoginMiddleware::class); 
+Route::get('admin/login', [AuthController::class, 'index'])->name('auth.login')->middleware(LoginMiddleware::class);
 Route::post('login', [AuthController::class, 'login'])->name('auth.logged');
 
 //USER
@@ -155,7 +164,7 @@ Route::post('ajax/dashboard/changeStatusAll', [AjaxDashboardController::class, '
 
 // LOGIN LOGOUT ADMIN ROUTES
 Route::group(['prefix' => 'user'], function(){
-    Route::get('login', [AuthController::class, 'index'])->name('auth.login')->middleware(LoginMiddleware::class);    
+    Route::get('login', [AuthController::class, 'index'])->name('auth.login')->middleware(LoginMiddleware::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 

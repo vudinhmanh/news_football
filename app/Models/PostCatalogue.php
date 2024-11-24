@@ -51,4 +51,12 @@ class PostCatalogue extends Model
         }
         return true;
     }
-}   
+
+    public function parent(){
+        return $this->belongsTo(PostCatalogue::class, 'parentid');
+    }
+
+    public function childrens(){
+        return $this->hasMany(PostCatalogue::class, 'parentid');
+    }
+}

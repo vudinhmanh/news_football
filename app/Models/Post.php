@@ -40,4 +40,12 @@ class Post extends Model
     public function post_catalogues(){
         return $this->belongsToMany(PostCatalogue::class, 'post_catalogue_post' , 'post_id', 'post_catalogue_id');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
 }
