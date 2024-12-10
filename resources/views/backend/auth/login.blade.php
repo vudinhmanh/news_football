@@ -22,7 +22,7 @@
         <div class="row">
 
             <div class="col-md-6">
-                <h2 class="font-bold">Trang quản trị M-Shop</h2>
+                <h2 class="font-bold">Trang quản trị News football</h2>
 
                 <p>
                     Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app
@@ -59,7 +59,7 @@
                             </div>
                         @endif
                         <div class="form-group">
-                            <input type="text" class="form-control" name="username" placeholder="Username">
+                            <input type="text" class="form-control" name="email" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" name="password" placeholder="Password">

@@ -65,7 +65,7 @@ class HomeController extends Controller
 
     public function googleCallback()
     {
-        $google_user = Socialite::driver('google')->stateless()->user();
+        $google_user = Socialite::driver('google')->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))->stateless()->user();
 
         // Find or create user with email
         $user = User::firstOrCreate(

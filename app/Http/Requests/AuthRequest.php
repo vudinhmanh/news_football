@@ -23,7 +23,7 @@ class AuthRequest extends FormRequest
     {
         return [
             //
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ];
     }
@@ -31,7 +31,7 @@ class AuthRequest extends FormRequest
     {
         return [
             //
-            'username.required' => 'Tên không được để trống',
+            'email.required' => 'Email không được để trống',
             'password.required' => 'Mật khẩu không được để trống'
         ];
     }

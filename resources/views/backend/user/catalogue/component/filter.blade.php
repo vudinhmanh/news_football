@@ -30,9 +30,9 @@
         <a href="{{ route('user.catalogue.permission') }}" class="btn btn-warning flex items-center px-4 py-2 rounded-lg text-white !mb-0">
           <i class="fa fa-key mr-2"></i> {{ __('messages.permission.edit.title') }}
         </a>
-        <a href="{{ route('user.catalogue.create') }}" class="btn btn-danger flex items-center px-4 py-2 rounded-lg text-white !mb-0">
+        {{-- <a href="{{ route('user.catalogue.create') }}" class="btn btn-danger flex items-center px-4 py-2 rounded-lg text-white !mb-0">
           <i class="fa fa-plus mr-2"></i> {{ __('messages.userCatalogue.create.title') }}
-        </a>
+        </a> --}}
       </div>
       
     </div>

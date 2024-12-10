@@ -77,7 +77,7 @@ class PostController extends Controller
         if($this->postService->create($request)){
             return redirect()->route('post.index')->with('success', "Thêm thành công");    
         }
-        return redirect()->route('post.index')->with('error', "Thêm ngữ thất bại");    
+        return redirect()->route('post.index')->with('error', "Thêm thất bại");    
     }
     public function edit($id){
         $this->authorize('modules', 'post.update');

@@ -129,7 +129,7 @@ return [
         'commonLang' => 'Enter general language information',
     ],
     'parent' => 'Choose parent category',
-    'catalogue' => 'category',
+    'catalogue' => 'Category',
     'parentNotice' => 'Choose Root if there is no parent category',
     'subparent' => 'Choose sub-category (if available)',
     'image' => 'Choose display image',

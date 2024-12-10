@@ -61,7 +61,7 @@ class PostService extends BaseService implements PostServiceInterface
       // dd($post);
       if($post->id > 0){
         $payloadLanguage = $request->only($this->payloadLanguage());
-        $payloadLanguage['canonical'] = Str::slug($payloadLanguage['canonical']);
+        // $payloadLanguage['canonical'] = Str::slug($payloadLanguage['canonical']);
         //Lấy 2 khoá ngoại
         $payloadLanguage['language_id'] = $this->currentLanguage();
         $payloadLanguage['post_id'] = $post->id;  
@@ -89,7 +89,7 @@ class PostService extends BaseService implements PostServiceInterface
       $flag = $this->postRepository->update($id, $payload);
       if($flag == true){
         $payloadLanguage = $request->only($this->payloadLanguage());
-        $payloadLanguage['canonical'] = Str::slug($payloadLanguage['canonical']);
+        // $payloadLanguage['canonical'] = Str::slug($payloadLanguage['canonical']);
         //Lấy 2 khoá ngoại
         $payloadLanguage['language_id'] = $this->currentLanguage();
         $payloadLanguage['post_id'] = $id;

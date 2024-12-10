@@ -1,6 +1,19 @@
 @extends('frontend.layout')
 
 @section('content')
+    <style>
+        p > img{
+            width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        .bg-white img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
     <body>
     <div class="container-fluid">
         <div class="container">
@@ -8,7 +21,7 @@
                 <div class="col-lg-12">
                     <!-- News Detail Start -->
                     <div class="position-relative mb-3">
-                        <img class="img-fluid w-100" src="{{$new->image}}" style="object-fit: cover;">
+                        {{-- <img class="img-fluid w-100" src="{{$new->image}}" style="object-fit: cover;"> --}}
                         <div class="bg-white border border-top-0 p-4" style="word-wrap: break-word;">
                             <div class="mb-3">
                                 @foreach($new->post_catalogues as $category)

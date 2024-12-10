@@ -28,7 +28,7 @@
                     @include('backend.post.catalogue.component.general')
                 </div>
             </div>
-            @include('backend.post.catalogue.component.seo')
+            {{-- @include('backend.post.catalogue.component.seo') --}}
           </div>
           <div class="col-lg-4">
             @include('backend.post.catalogue.component.aside')

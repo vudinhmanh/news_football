@@ -35,4 +35,7 @@
       @endif
   </tbody>
 </table>
+@php
+// dd($postCatalogues)-links;
+@endphp
 {{  $postCatalogues->links('backend.pagination.paginate') }}

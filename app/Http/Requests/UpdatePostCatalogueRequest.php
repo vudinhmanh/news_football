@@ -24,15 +24,15 @@ class UpdatePostCatalogueRequest extends FormRequest
         return [
             'name' => 'required',
             // 'canonical' => 'required|unique:post_catalogue_language,canonical '.$this->canonical.'|max:191',
-            'canonical' => 'required|unique:post_catalogue_language,canonical, '.$this->id.',post_catalogue_id'
+            // 'canonical' => 'required|unique:post_catalogue_language,canonical, '.$this->id.',post_catalogue_id'
         ];
     }
     public function messages(): array
     {
         return [
             'name.required' => 'Bạn chưa nhập vào ô tiêu đề',
-            'canonical.required' => 'Bạn chưa nhập vào ô đường dẫn',
-            'canonical.unique' => 'Đường dẫn đã tồn tại'
+            // 'canonical.required' => 'Bạn chưa nhập vào ô đường dẫn',
+            // 'canonical.unique' => 'Đường dẫn đã tồn tại'
         ];
     }
 }

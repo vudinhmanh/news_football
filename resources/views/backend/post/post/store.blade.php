@@ -29,7 +29,7 @@
                     @include('backend.post.post.component.general')
                 </div>
             </div>
-            @include('backend.post.post.component.seo')
+            {{-- @include('backend.post.post.component.seo') --}}
           </div>
           <div class="col-lg-4">
             @include('backend.post.post.component.aside')

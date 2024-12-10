@@ -57,9 +57,9 @@ body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.5;
-  color: #9A9DA2;
+  color: #111;
   text-align: left;
   background-color: #EDEFF4;
 }
@@ -477,8 +477,8 @@ hr {
 
 small,
 .small {
-  font-size: 80%;
-  font-weight: 400;
+  font-size: 90%;
+  font-weight: 600;
 }
 
 mark,

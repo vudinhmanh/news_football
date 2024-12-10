@@ -2,9 +2,9 @@
     <div class="row py-4">
         <div class="col-lg-4 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">TIN TỨC THỂ THAO</h5>
-            <p class="font-weight-medium"><i class="fa fa-map-marker-alt mr-2"></i>Địa chỉ ví dụ</p>
-            <p class="font-weight-medium"><i class="fa fa-phone-alt mr-2"></i>Số điện thoại ví dụ</p>
-            <p class="font-weight-medium"><i class="fa fa-envelope mr-2"></i>Email ví dụ</p>
+            <p class="font-weight-medium"><i class="fa fa-map-marker-alt mr-2"></i>Số 298 Đ. Cầu Diễn, Minh Khai, Bắc Từ Liêm, Hà Nội</p>
+            <p class="font-weight-medium"><i class="fa fa-phone-alt mr-2"></i>0395792304</p>
+            <p class="font-weight-medium"><i class="fa fa-envelope mr-2"></i>Manhmanhmanh289@gmail.com</p>
         </div>
         <div class="col-lg-4 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Tin xem nhiều nhất</h5>

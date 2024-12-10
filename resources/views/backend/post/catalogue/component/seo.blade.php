@@ -1,3 +1,4 @@
+
 <div class="ibox">
   <div class="ibox-title">
       <h5 class="uppercase">{{ __('messages.seo') }}</h5>
@@ -66,7 +67,7 @@
                       </div>
                   </div>
               </div>
-              <div class="row mb-[15px]">
+              {{-- <div class="row mb-[15px]">
                   <div class="col-lg-12">
                       <div class="form-row">
                           <label for="" class="block control-label">
@@ -82,12 +83,11 @@
                               class="form-control"
                               placeholder=""
                               autocomplete="off"
-                              {{-- value="{{ old('meta_description', ($postCatalogue->meta_description) ?? '' ) }}" --}}
                               >{{ old('meta_description', ($postCatalogue->meta_description) ?? '') }}</textarea>
                       </div>
                   </div>
-              </div>
-              <div class="row mb-[15px]">
+              </div> --}}
+              {{-- <div class="row mb-[15px]">
                   <div class="col-lg-12">
                       <div class="form-row">
                           <label for="" class="block control-label">
@@ -111,7 +111,7 @@
                         </div>
                       </div>
                   </div>
-              </div>
+              </div> --}}
           </div>
       </div>
   </div>

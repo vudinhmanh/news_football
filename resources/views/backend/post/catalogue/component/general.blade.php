@@ -32,13 +32,13 @@
       </div>
   </div>
 </div>
-<div class="row mt-5">
+{{-- <div class="row mt-5">
   <div class="col-lg-12">
       <div class="form-row">
         <div class="flex justify-between align-middle">
           <label for="" class="control-label text-left">{{ __('messages.content') }}</label>
         </div>
-          <textarea 
+          <textarea   
               rows="6"
               cols="450"
               type="text"   
@@ -50,4 +50,4 @@
               >{{ old('content', ($postCatalogue->content) ?? '') }}</textarea>
       </div>
   </div>
-</div>
+</div> --}}

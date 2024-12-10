@@ -17,14 +17,14 @@
                     {{ (old('canonical', (isset($post->canonical)))) ? config('app.url').old('canonical').config('app.general.suffix') : __('messages.fillCanonical') }}
                   </p>
               </div>
-              <div>
+              {{-- <div>
                   <p class="text-[14px] meta_description">
                     {{ (old('meta_description',  (isset($post->meta_description)))) ? old('meta_description',  (isset($post->meta_description))) : __('messages.fillMetaDescription') }}
                   </p>
-              </div>
+              </div> --}}
           </div>
           <div>
-              <div class="row mb-[15px]">
+              {{-- <div class="row mb-[15px]">
                   <div class="col-lg-12">
                       <div class="form-row">
                           <label for="" class="block control-label">
@@ -43,8 +43,8 @@
                           >
                       </div>
                   </div>
-              </div>
-              <div class="row mb-[15px]">
+              </div> --}}
+              {{-- <div class="row mb-[15px]">
                   <div class="col-lg-12">
                       <div class="form-row">
                           <label for="" class="block control-label">
@@ -62,9 +62,9 @@
                           >
                       </div>
                   </div>
-              </div>
+              </div> --}}
               <div class="row mb-[15px]">
-                  <div class="col-lg-12">
+                  {{-- <div class="col-lg-12">
                       <div class="form-row">
                           <label for="" class="block control-label">
                               <div class="flex justify-between items-center">
@@ -79,10 +79,9 @@
                               class="form-control"
                               placeholder=""
                               autocomplete="off"
-                              {{-- value="{{ old('meta_description', ($post->meta_description) ?? '' ) }}" --}}
                               >{{ old('meta_description', ($post->meta_description) ?? '') }}</textarea>
                       </div>
-                  </div>
+                  </div> --}}
               </div>
               <div class="row mb-[15px]">
                   <div class="col-lg-12">

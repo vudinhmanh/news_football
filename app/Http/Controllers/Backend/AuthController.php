@@ -30,7 +30,7 @@ class AuthController extends Controller
     public function login(AuthRequest $request)
     {
         $credentials = [
-            'name' => $request->input('username'),
+            'email' => $request->input('email'),
             'password' => $request->input('password')
         ];
 

@@ -25,7 +25,7 @@
           </div>
     </div>
 </div>
-<div class="ibox">
+{{-- <div class="ibox">
     <div class="ibox-title">
         <h5>{{ __('messages.image') }}</h5>
     </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="ibox">
     <div class="ibox-title">
         <h5>{{ __('messages.advange') }}</h5>

@@ -24,7 +24,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'name' => 'required',
             // 'canonical' => 'required|unique:post_catalogue_language,canonical '.$this->canonical.'|max:191',
-            'canonical' => 'required|unique:post_language,canonical, '.$this->id.',post_id',
+            // 'canonical' => 'required|unique:post_language,canonical, '.$this->id.',post_id',
             'post_catalogue_id' => 'gt:0'
         ];
     }
@@ -32,8 +32,8 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'name.required' => 'Bạn chưa nhập vào ô tiêu đề',
-            'canonical.required' => 'Bạn chưa nhập vào ô đường dẫn',
-            'canonical.unique' => 'Đường dẫn đã tồn tại',
+            // 'canonical.required' => 'Bạn chưa nhập vào ô đường dẫn',
+            // 'canonical.unique' => 'Đường dẫn đã tồn tại',
             'post_catalogue_id' => 'Bạn phải nhập vào danh mục cha'
         ];
     }

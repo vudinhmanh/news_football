@@ -48,7 +48,7 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
     $this->paginateSelect(), 
     $condition, 
     $perpage,
-    ['path' => 'post.catalogue.index'],  
+    ['path' => 'post/catalogue/index'],  //path phan trang
     ['post_catalogues.lft', 'ASC'],
     [
         ['post_catalogue_language as tb2','tb2.post_catalogue_id', '=' , 'post_catalogues.id']
@@ -66,7 +66,7 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
       $postCatalogue = $this->postCatalogueRepository->create($payload);
       if($postCatalogue->id > 0){
         $payloadLanguage = $request->only($this->payloadLanguage());
-        $payloadLanguage['canonical'] = Str::slug($payloadLanguage['canonical']);
+        // $payloadLanguage['canonical'] = Str::slug($payloadLanguage['canonical']);
         //Lấy 2 khoá ngoại
         $payloadLanguage['language_id'] = $this->currentLanguage();
         $payloadLanguage['post_catalogue_id'] = $postCatalogue->id;
@@ -83,7 +83,7 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
       echo $e->getMessage();
       die();
       return false;
-    }
+    } 
   }
 
   public function update($id, $request){
@@ -94,7 +94,7 @@ class PostCatalogueService extends BaseService implements PostCatalogueServiceIn
       $flag = $this->postCatalogueRepository->update($id, $payload);
       if($flag == true){
         $payloadLanguage = $request->only($this->payloadLanguage());
-        $payloadLanguage['canonical'] = Str::slug($payloadLanguage['canonical']);
+        // $payloadLanguage['canonical'] = Str::slug($payloadLanguage['canonical']);
         //Lấy 2 khoá ngoại
         $payloadLanguage['language_id'] = $this->currentLanguage();
         $payloadLanguage['post_catalogue_id'] = $id;

@@ -23,7 +23,7 @@ class StorePostRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'canonical' => 'required|min:5|unique:post_catalogue_language',
+            // 'canonical' => 'required|min:5|unique:post_catalogue_language',
             'parentid' => 'gt:0',
         ];
     }
@@ -31,9 +31,9 @@ class StorePostRequest extends FormRequest
     {
         return [
             'name.required' => 'Bạn chưa nhập vào tiêu đề',
-            'canonical.required' => 'Bạn chưa nhập đường dẫn',
-            'canonical.min' => 'Bạn hãy nhập đường dẫn phù hợp',
-            'canonical.unique' => 'Đường dẫn đã tồn tại hãy chọn đường dẫn khác',
+            // 'canonical.required' => 'Bạn chưa nhập đường dẫn',
+            // 'canonical.min' => 'Bạn hãy nhập đường dẫn phù hợp',
+            // 'canonical.unique' => 'Đường dẫn đã tồn tại hãy chọn đường dẫn khác',
             'parentid.gt' => 'Bạn chưa nhập danh mục cha'
         ];
     }
