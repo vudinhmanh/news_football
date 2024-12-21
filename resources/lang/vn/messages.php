@@ -277,6 +277,8 @@ return [
         '1' => 'Quản trị viên',
         '2' => 'Cộng tác viên'
     ],
+    'generalPostDescription' => 'Bạn có chắc chắn muốn xoá bài viết có tiêu đề: ',
+    'generalPostCatalogueDescription' => 'Bạn có chắc chắn muốn xoá nhóm bài viết có tiêu đề: ',
     'generalTitle' => 'Thông tin chung',
     'generalWarning' => 'Lưu ý: Không thể khôi phục dữ liệu sau khi xóa. Hãy chắc chắn bạn muốn thực hiện chức năng này',
     'generalRequiredField' => 'Lưu ý: Những trường đánh dấu',

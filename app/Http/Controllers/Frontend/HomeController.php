@@ -26,10 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $breaking_news = $this->breaking_news;
-        $latest_news = Post::where('publish', 2)->orderBy('id', 'desc')->get();
+        $latest_news = Post::where('publish', 2)->orderBy('id', 'desc')->take(10)->get();
         $featured_news = Post::where('publish', 2)->orderBy('n_comments', 'desc')->limit(4)->get();
         $categories = $this->categories;
-
         return view('frontend.index', compact(
             'breaking_news',
             'latest_news',
@@ -116,6 +115,7 @@ class HomeController extends Controller
 
         if ($save_post) {
             $save_post->delete();
+            return redirect()->back()->with('success', 'Đã bỏ lưu tin tức');
         } else {
             $save_post = new SavePost();
             $save_post->user_id = $user_id;

@@ -17,7 +17,7 @@
               <div class="panel-head">
                   <div class="">
                       <p class="text-2xl text-red-500">
-                        {{__('messages.generalDescription') }}  
+                        {{__('messages.generalPostDescription') }}  
                         {{ $post->name }}
                         </p>
                       <p class="font-bold">{{__('messages.generalWarning')}}
@@ -29,7 +29,7 @@
               <div class="ibox">
                   <div class="ibox-content">
                       <div class="row mb15">
-                          <div class="col-lg-5">
+                          <div class="col-lg-12">
                               <div class="form-row">
                                   <label for="" class="control-label text-left">{{__('messages.tableName') }} <span class="text-danger">(*)</span></label>
                                   <input 
@@ -43,7 +43,7 @@
                                   >
                               </div>
                           </div>
-                          <div class="col-lg-7">
+                          {{-- <div class="col-lg-7">
                               <div class="form-row">
                                   <label for="" class="control-label text-left">{{__('messages.canonical') }} <span class="text-danger">(*)</span></label>
                                   <input 
@@ -57,7 +57,7 @@
                                       readonly
                                   >
                               </div>
-                          </div>
+                          </div> --}}
                       </div>
                   </div>
               </div>

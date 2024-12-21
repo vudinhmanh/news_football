@@ -57,7 +57,7 @@
                                   <label for="" class="control-label text-left">
                                     {{__('messages.permission.permissionKeyword') }}
                                     <span class="text-danger">(*)</span>
-                                  </label>
+                                  </label>  
                                   <input 
                                       type="text"
                                       name="canonical"

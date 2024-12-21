@@ -20,31 +20,10 @@
 
     <div class="loginColumns animated fadeInDown">
         <div class="row">
-
-            <div class="col-md-6">
-                <h2 class="font-bold">Trang quản trị News football</h2>
-
-                <p>
-                    Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app
-                    views.
-                </p>
-
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s.
-                </p>
-
-                <p>
-                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-
-                <p>
-                    <small>It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged.</small>
-                </p>
-
+            <div class="col-md-12">
+                <h2 class="font-bold text-center">Trang quản trị News football</h2>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="ibox-content">
                     <form method="post" class="m-t" role="form" action="{{route('auth.logged')}}">
                         @csrf
